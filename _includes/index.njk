@@ -1,0 +1,30 @@
+---
+layout: base.njk
+permalink: "/index.html"
+---
+<main class="index">
+  <div class="wrap">
+    {% if collections.posts | length %}
+    <ol>
+      {% for post in collections.posts %}
+      <li>
+        <article class="entry">
+          <a href="{{ post.url }}">
+            <span class="date">{{ post.date | readableDate }}</span>
+            <span class="body">
+              <h2>{{ post.data.title }}</h2>
+              {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
+              <span class="arrow">read →</span>
+            </span>
+          </a>
+        </article>
+      </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p style="color:var(--muted);font-family:var(--mono);font-size:.9rem">
+      No posts yet. Add a markdown file to <code>blog/</code> and push.
+    </p>
+    {% endif %}
+  </div>
+</main>
