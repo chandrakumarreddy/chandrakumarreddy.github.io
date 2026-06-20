@@ -6,7 +6,7 @@ const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
 // subpaths break absolute image URLs in the feed, and importers then drop
 // every image. If you must use a subpath, set pathPrefix below + PATH_PREFIX.
 const SITE_URL = (
-  process.env.SITE_URL || "https://chanddrakumarreddy.github.io"
+  process.env.SITE_URL || "https://chandrakumarreddy.github.io"
 ).replace(/\/$/, "");
 const SITE_TITLE = "OrbitShift Engineering";
 const SITE_DESC = "Engineering write-ups from the OrbitShift team.";
@@ -55,6 +55,7 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: { input: ".", includes: "_includes", output: "_site" },
+    pathPrefix: "/tech-blog-posts/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
   };

@@ -37,7 +37,7 @@ jobs:
         run: npm run build
         env:
           # MUST match your Pages root. No trailing slash, no subpath.
-          SITE_URL: https://blog.orbitshift.ai
+          SITE_URL: https://chandrakumarreddy.github.io
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
