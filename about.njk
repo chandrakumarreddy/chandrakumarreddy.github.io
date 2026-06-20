@@ -2,14 +2,72 @@
 layout: base.njk
 permalink: "/about/index.html"
 title: "About"
-description: "About Chandra Kumar Reddy."
+description: "About Chandra Kumar Reddy — software engineer writing about full-stack, ML, and infrastructure."
 ---
 <main class="article">
-  <div class="wrap narrow">
-    <h1>About</h1>
-    <div class="prose">
-      <p>I'm a software architect writing about full-stack engineering, ML, infrastructure, and system design. These notes are generated from real pull requests and published straight from markdown.</p>
-      <p>Find me on <a href="https://github.com/chandrakumarreddy">GitHub</a>, or subscribe via <a href="/feed.xml">RSS</a>.</p>
+  <div class="wrap">
+    <div class="about-head">
+      <img class="avatar" src="https://avatars.githubusercontent.com/u/24401376?v=4" alt="Chandra Kumar Reddy" width="96" height="96" loading="lazy">
+      <div>
+        <h1>About</h1>
+        <p class="about-sub">Software engineer · building OrbitShift</p>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <div class="prose">
+        <p>Hi, I'm Chandra — a software engineer. I design and build
+          <strong>distributed systems</strong>: event-driven services, data and ML
+          platforms, and the AWS infrastructure that runs them. My hands-on work
+          lives mostly in Go, Python, and TypeScript, and these days most of my
+          time goes into building <strong>OrbitShift</strong>.</p>
+        <p>This blog is where I write up the engineering decisions behind shipping
+          software at scale — service boundaries, consistency and failure modes,
+          scaling bottlenecks, and the trade-offs that don't show up in the happy
+          path. The goal is to keep things concrete: the kind of write-up I'd want
+          to find when facing the same decision myself.</p>
+        <p>Most posts start as something I had to figure out at work: a system that
+          had to handle more load, a service boundary drawn in the wrong place, a
+          design with no obvious right answer. I write them down so the next
+          person — often future me — doesn't have to start from scratch.</p>
+      </div>
+
+      <aside class="about-side">
+        <div class="side-card">
+          <h3>Focus areas</h3>
+          <ul class="chips">
+            <li>Distributed systems</li>
+            <li>Event-driven &amp; microservices</li>
+            <li>Scalability &amp; reliability</li>
+            <li>AWS cloud infrastructure</li>
+            <li>Kubernetes &amp; containers</li>
+            <li>Data &amp; ML platforms</li>
+            <li>API &amp; integration design</li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>Toolbox</h3>
+          <ul class="chips">
+            <li>Go</li>
+            <li>Python</li>
+            <li>TypeScript</li>
+            <li>AWS</li>
+            <li>Kubernetes</li>
+            <li>Kafka</li>
+            <li>PostgreSQL</li>
+            <li>Terraform</li>
+          </ul>
+        </div>
+        <div class="side-card">
+          <h3>Elsewhere</h3>
+          <ul class="side-links">
+            <li><a href="https://github.com/chandrakumarreddy"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg> GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/chandra-penugonda/"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18.34V10.5H5.67v7.84h2.67zM7 9.34a1.55 1.55 0 100-3.1 1.55 1.55 0 000 3.1zm11.34 9V14.2c0-2.3-1.23-3.37-2.87-3.37-1.32 0-1.91.73-2.24 1.24v-1.07h-2.67v7.84h2.67v-4.38c0-.23.02-.46.09-.62.18-.46.6-.94 1.31-.94.92 0 1.29.7 1.29 1.73v4.21h2.59z"/></svg> LinkedIn</a></li>
+            <li><a href="https://x.com/chandra_penugon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.3 8.34L23 22h-6.6l-5.17-6.76L5.3 22H2.2l7.8-8.92L1.5 2h6.77l4.67 6.18L18.9 2zm-1.16 18h1.83L7.34 3.9H5.38L17.74 20z"/></svg> X / Twitter</a></li>
+            <li><a href="/feed.xml"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.4" fill="currentColor" stroke="none"/></svg> RSS feed</a></li>
+          </ul>
+        </div>
+      </aside>
     </div>
   </div>
 </main>

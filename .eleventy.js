@@ -10,11 +10,12 @@ const SITE_URL = (
 ).replace(/\/$/, "");
 const SITE_TITLE = "Chandra Kumar Reddy";
 const SITE_DESC =
-  "Engineering notes on RAG, Postgres, async Python, and building OrbitShift.";
+  "Engineering notes on distributed systems, event-driven services, and scaling production software on AWS.";
 
 module.exports = function (eleventyConfig) {
-  // Don't build repo docs as pages.
+  // Don't build repo docs / tooling defs as pages.
   eleventyConfig.ignores.add("README.md");
+  eleventyConfig.ignores.add("blog-pr.md");
 
   // Human-readable date filter (Nunjucks has none built in).
   eleventyConfig.addFilter("readableDate", (d) =>
@@ -24,6 +25,11 @@ module.exports = function (eleventyConfig) {
       day: "numeric",
       timeZone: "UTC",
     }),
+  );
+
+  // ISO (YYYY-MM-DD) date for sitemap <lastmod>.
+  eleventyConfig.addFilter("htmlDateString", (d) =>
+    new Date(d).toISOString().slice(0, 10),
   );
 
   // Estimate reading time from rendered HTML (~200 wpm).

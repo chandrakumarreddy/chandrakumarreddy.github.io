@@ -4,13 +4,21 @@ permalink: "/index.html"
 ---
 <header class="hero">
   <div class="wrap">
-    <div>
-      <h1>Engineering notes on <span class="grad">full-stack, ML, infrastructure,</span> and system design.</h1>
-      <p class="lede">{{ site.description }}</p>
+    <div class="hero-copy">
+      <p class="eyebrow">Software engineering · distributed systems · cloud</p>
+      <h1>Deep dives on the systems<br>behind <span class="grad">production software</span>.</h1>
+      <p class="lede">{{ site.description }} Long-form, systems-first write-ups drawn from real production work — service boundaries, consistency and failure modes, scaling bottlenecks, and the trade-offs that don't show up in the happy path.</p>
+      <ul class="topics" aria-label="Topics I write about">
+        <li>Distributed systems</li>
+        <li>Event-driven &amp; microservices</li>
+        <li>AWS &amp; Kubernetes</li>
+        <li>Data &amp; ML platforms</li>
+        <li>Go · Python · TypeScript</li>
+      </ul>
       <div class="cta-row">
         <a class="btn btn-primary" href="/#notes">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>
-          Read Notes
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          Browse all posts
         </a>
         <a class="btn btn-ghost" href="/feed.xml">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1.4" fill="currentColor" stroke="none"/></svg>
@@ -18,29 +26,101 @@ permalink: "/index.html"
         </a>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366F1"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient>
-          <radialGradient id="glow" cx="55%" cy="40%" r="60%"><stop offset="0" stop-color="#8B5CF6" stop-opacity="0.22"/><stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>
-          <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#6357C9" flood-opacity="0.18"/></filter>
-        </defs>
-        <rect width="420" height="360" fill="url(#glow)"/>
-        <g filter="url(#soft)"><rect x="118" y="64" width="200" height="200" rx="34" fill="var(--surface)" stroke="var(--hair)"/></g>
-        <path d="M188 139l-22 25 22 25" fill="none" stroke="url(#g1)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M248 139l22 25-22 25" fill="none" stroke="url(#g1)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M224 132l-12 64" stroke="url(#g1)" stroke-width="11" stroke-linecap="round"/>
-        <g filter="url(#soft)"><rect x="150" y="272" width="92" height="20" rx="5" fill="url(#g1)"/><rect x="158" y="292" width="92" height="18" rx="5" fill="var(--ink-soft)" opacity="0.85"/></g>
-        <circle cx="332" cy="246" r="26" fill="none" stroke="var(--hair)" stroke-width="10"/><path d="M358 240h10a10 10 0 010 20h-7" fill="none" stroke="var(--hair)" stroke-width="8"/>
-      </svg>
+    <div class="hero-illustration" aria-hidden="true">
+        <svg viewBox="0 0 440 340" xmlns="http://www.w3.org/2000/svg">
+          <!-- connectors -->
+          <g stroke="var(--hair)" stroke-width="2" fill="none">
+            <path d="M220 70 V92 M64 92 H376 M64 92 V120 M220 92 V120 M376 92 V120"/>
+            <path d="M64 178 V214 M220 178 V214 M376 178 V214"/>
+            <path d="M150 250 V276 M290 250 V276"/>
+          </g>
+          <g class="flow-group" fill="none" stroke-linecap="round">
+            <path class="flow" d="M220 70 V92 M64 92 H376 M64 92 V120 M220 92 V120 M376 92 V120"/>
+            <path class="flow" style="animation-delay:.45s" d="M64 178 V214 M220 178 V214 M376 178 V214"/>
+            <path class="flow" style="animation-delay:.9s" d="M150 250 V276 M290 250 V276"/>
+          </g>
+          <g fill="var(--accent)">
+            <circle cx="64" cy="92" r="3"/><circle cx="220" cy="92" r="3"/><circle cx="376" cy="92" r="3"/>
+            <circle cx="150" cy="250" r="3"/><circle cx="290" cy="250" r="3"/>
+          </g>
+
+          <!-- API gateway -->
+          <rect x="160" y="34" width="120" height="38" rx="10" fill="var(--surface)" stroke="var(--hair)" stroke-width="1.5"/>
+          <rect x="174" y="48" width="12" height="10" rx="2.5" fill="var(--accent)"/>
+          <rect x="196" y="49" width="68" height="8" rx="4" fill="var(--muted)" opacity=".5"/>
+
+          <!-- services -->
+          <g>
+            <rect x="14" y="120" width="100" height="58" rx="11" fill="var(--surface)" stroke="var(--hair)" stroke-width="1.5"/>
+            <rect x="28" y="134" width="14" height="14" rx="3.5" fill="var(--accent)"/>
+            <rect x="50" y="137" width="46" height="7" rx="3.5" fill="var(--muted)" opacity=".5"/>
+            <rect x="28" y="158" width="68" height="7" rx="3.5" fill="var(--hair)"/>
+          </g>
+          <g>
+            <rect x="170" y="120" width="100" height="58" rx="11" fill="var(--surface)" stroke="var(--hair)" stroke-width="1.5"/>
+            <rect x="184" y="134" width="14" height="14" rx="3.5" fill="var(--accent)"/>
+            <rect x="206" y="137" width="46" height="7" rx="3.5" fill="var(--muted)" opacity=".5"/>
+            <rect x="184" y="158" width="68" height="7" rx="3.5" fill="var(--hair)"/>
+          </g>
+          <g>
+            <rect x="326" y="120" width="100" height="58" rx="11" fill="var(--surface)" stroke="var(--hair)" stroke-width="1.5"/>
+            <rect x="340" y="134" width="14" height="14" rx="3.5" fill="var(--accent)"/>
+            <rect x="362" y="137" width="46" height="7" rx="3.5" fill="var(--muted)" opacity=".5"/>
+            <rect x="340" y="158" width="68" height="7" rx="3.5" fill="var(--hair)"/>
+          </g>
+
+          <!-- event bus -->
+          <rect x="14" y="214" width="412" height="34" rx="9" fill="var(--bg-tint)" stroke="var(--hair)" stroke-width="1.5"/>
+          <g fill="var(--accent)">
+            <rect x="34" y="227" width="34" height="8" rx="4"/>
+            <rect x="130" y="227" width="34" height="8" rx="4" opacity=".55"/>
+            <rect x="226" y="227" width="34" height="8" rx="4"/>
+            <rect x="322" y="227" width="34" height="8" rx="4" opacity=".55"/>
+          </g>
+          <circle cx="392" cy="231" r="6" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+
+          <!-- datastores -->
+          <g fill="var(--surface)" stroke="var(--hair)" stroke-width="1.5">
+            <ellipse cx="150" cy="276" rx="34" ry="9" fill="var(--bg-tint)"/>
+            <path d="M116 276 V312" fill="none"/><path d="M184 276 V312" fill="none"/>
+            <path d="M116 312 a34 9 0 0 0 68 0" fill="none"/>
+            <ellipse cx="290" cy="276" rx="34" ry="9" fill="var(--bg-tint)"/>
+            <path d="M256 276 V312" fill="none"/><path d="M324 276 V312" fill="none"/>
+            <path d="M256 312 a34 9 0 0 0 68 0" fill="none"/>
+          </g>
+          <g fill="var(--accent)">
+            <rect x="138" y="290" width="24" height="6" rx="3"/>
+            <rect x="278" y="290" width="24" height="6" rx="3"/>
+          </g>
+        </svg>
+      </div>
+  </div>
+  <a class="scroll-cue" href="#notes" aria-label="Browse posts below">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+</header>
+
+<section class="cred" aria-label="What this blog covers">
+  <div class="wrap">
+    <div class="cred-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+      <div><strong>Built for scale</strong><span>Services that hold up under real production load</span></div>
+    </div>
+    <div class="cred-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div><strong>Designed to fail well</strong><span>Resilience, consistency, and graceful degradation</span></div>
+    </div>
+    <div class="cred-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5L3 21l4.5-1.5M14 4s4 1 6 3 3 6 3 6l-8 8-6-6 8-8z"/><circle cx="15" cy="9" r="1.5"/></svg>
+      <div><strong>Shipped, not theoretical</strong><span>Notes from systems running in production</span></div>
     </div>
   </div>
-</header>
+</section>
 
 <main>
   <section class="notes wrap" id="notes">
     <div class="notes-head">
-      <h2>All Notes <span class="count" id="note-count">0</span></h2>
+      <h2>Latest posts <span class="count" id="note-count">0</span></h2>
       <div class="controls">
         <label class="search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
