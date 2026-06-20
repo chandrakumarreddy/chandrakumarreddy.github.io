@@ -1,0 +1,32 @@
+<svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="1000" height="420" fill="#f8fafc"/>
+  <text x="40" y="46" fill="#0f172a" font-size="26" font-weight="700">Overlapping chunks keep context from being severed</text>
+  <text x="40" y="74" fill="#64748b" font-size="16">chunk_size=1000, overlap=200 → each window shares its last 200 chars with the next</text>
+
+  <!-- full document bar -->
+  <text x="40" y="120" fill="#475569" font-size="15" font-weight="600">Source document (one .md file)</text>
+  <rect x="40" y="132" width="920" height="34" rx="6" fill="#e2e8f0" stroke="#cbd5e1"/>
+  <text x="500" y="154" fill="#94a3b8" font-size="14" text-anchor="middle">content[0 : len]</text>
+
+  <!-- chunk windows -->
+  <g>
+    <rect x="40"  y="210" width="300" height="46" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="190" y="238" fill="#4338ca" font-size="14" text-anchor="middle">chunk 0  ·  [0 : 1000]</text>
+
+    <rect x="240" y="276" width="300" height="46" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.5"/>
+    <text x="390" y="304" fill="#155e75" font-size="14" text-anchor="middle">chunk 1  ·  [800 : 1800]</text>
+
+    <rect x="440" y="342" width="300" height="46" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+    <text x="590" y="370" fill="#4338ca" font-size="14" text-anchor="middle">chunk 2  ·  [1600 : 2600]</text>
+  </g>
+
+  <!-- overlap highlights -->
+  <rect x="240" y="210" width="100" height="46" rx="0" fill="#f59e0b" opacity="0.25"/>
+  <rect x="440" y="276" width="100" height="46" rx="0" fill="#f59e0b" opacity="0.25"/>
+  <text x="765" y="262" fill="#b45309" font-size="14">200-char</text>
+  <text x="765" y="282" fill="#b45309" font-size="14">overlap</text>
+  <line x1="540" y1="299" x2="755" y2="270" stroke="#f59e0b" stroke-width="1.4"/>
+
+  <!-- step arrow -->
+  <text x="40" y="190" fill="#475569" font-size="14">stride = chunk_size − overlap = 800 chars</text>
+</svg>

@@ -1,0 +1,61 @@
+const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
+
+// ── Site config ────────────────────────────────────────────────
+// CHANGE THIS to your site root. Use a domain root (custom domain or a
+// <user>.github.io repo), NOT a project subpath like /orbitshift-blog —
+// subpaths break absolute image URLs in the feed, and importers then drop
+// every image. If you must use a subpath, set pathPrefix below + PATH_PREFIX.
+const SITE_URL = (
+  process.env.SITE_URL || "https://chanddrakumarreddy.github.io"
+).replace(/\/$/, "");
+const SITE_TITLE = "OrbitShift Engineering";
+const SITE_DESC = "Engineering write-ups from the OrbitShift team.";
+
+module.exports = function (eleventyConfig) {
+  // Copy generated assets to the site root: blog/assets/** -> /assets/**
+  eleventyConfig.addPassthroughCopy({ "blog/assets": "assets" });
+
+  // Expose site metadata to templates.
+  eleventyConfig.addGlobalData("site", {
+    url: SITE_URL,
+    title: SITE_TITLE,
+    description: SITE_DESC,
+  });
+
+  // Full-content RSS/Atom feed — this is the integration surface
+  // that Substack's importer and IFTTT->Medium both pull from.
+  eleventyConfig.addPlugin(feedPlugin, {
+    type: "atom",
+    outputPath: "/feed.xml",
+    collection: { name: "posts", limit: 0 }, // 0 = all posts
+    metadata: {
+      language: "en",
+      title: SITE_TITLE,
+      subtitle: SITE_DESC,
+      base: "https://chanddrakumarreddy.github.io/",
+      author: { name: "OrbitShift Engineering" },
+    },
+  });
+
+  // Two rewrites on markdown image refs, BEFORE render:
+  //   1. assets/... -> /assets/...  (root-absolute; avoids the per-post
+  //      subdirectory doubling the path)
+  //   2. .svg -> .png  (importers can't ingest SVG)
+  // The feed plugin then turns /assets/... into full https URLs via base.
+  eleventyConfig.addPreprocessor("imgRefs", "md", (data, content) =>
+    content
+      .replace(/(\]\()(?:\.\/)?assets\//gi, "$1/assets/")
+      .replace(/(\]\([^)]+?)\.svg(\))/gi, "$1.png$2"),
+  );
+
+  // Posts collection, newest first.
+  eleventyConfig.addCollection("posts", (api) =>
+    api.getFilteredByGlob("blog/*.md").sort((a, b) => b.date - a.date),
+  );
+
+  return {
+    dir: { input: ".", includes: "_includes", output: "_site" },
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: "njk",
+  };
+};

@@ -1,0 +1,161 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1E3A5F"/>
+      <stop offset="100%" stop-color="#162A48"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#164E47"/>
+      <stop offset="100%" stop-color="#0D3A34"/>
+    </linearGradient>
+    <linearGradient id="arrowgrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#0E9488" stop-opacity="0.4"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Ambient glows -->
+  <ellipse cx="200" cy="480" rx="280" ry="180" fill="#4F46E5" opacity="0.07"/>
+  <ellipse cx="980" cy="200" rx="260" ry="160" fill="#0E9488" opacity="0.07"/>
+
+  <!-- ── Left: source documents ── -->
+  <!-- Doc card 3 (back) -->
+  <rect x="64" y="218" width="210" height="270" rx="12" fill="#1A2840" stroke="#2D3F5C" stroke-width="1.5"/>
+  <rect x="64" y="218" width="210" height="8" rx="4" fill="#4F46E5" opacity="0.5"/>
+  <!-- doc lines -->
+  <rect x="84" y="244" width="140" height="10" rx="4" fill="#2D4060" opacity="0.9"/>
+  <rect x="84" y="264" width="170" height="8" rx="4" fill="#2D4060" opacity="0.7"/>
+  <rect x="84" y="282" width="120" height="8" rx="4" fill="#2D4060" opacity="0.6"/>
+  <rect x="84" y="300" width="155" height="8" rx="4" fill="#2D4060" opacity="0.5"/>
+  <rect x="84" y="318" width="100" height="8" rx="4" fill="#2D4060" opacity="0.4"/>
+  <rect x="84" y="344" width="140" height="8" rx="4" fill="#2D4060" opacity="0.4"/>
+  <rect x="84" y="362" width="165" height="8" rx="4" fill="#2D4060" opacity="0.35"/>
+  <rect x="84" y="380" width="110" height="8" rx="4" fill="#2D4060" opacity="0.3"/>
+  <text x="169" y="462" text-anchor="middle" fill="#4A6080" font-size="11" font-family="ui-monospace,Menlo,monospace">evidently/README.md</text>
+
+  <!-- Doc card 2 (middle) -->
+  <rect x="88" y="194" width="210" height="270" rx="12" fill="#1C2E48" stroke="#2D4468" stroke-width="1.5"/>
+  <rect x="88" y="194" width="210" height="8" rx="4" fill="#4F46E5" opacity="0.65"/>
+  <rect x="108" y="220" width="140" height="10" rx="4" fill="#2D4566" opacity="0.9"/>
+  <rect x="108" y="240" width="170" height="8" rx="4" fill="#2D4566" opacity="0.7"/>
+  <rect x="108" y="258" width="110" height="8" rx="4" fill="#2D4566" opacity="0.6"/>
+  <rect x="108" y="276" width="160" height="8" rx="4" fill="#2D4566" opacity="0.5"/>
+  <rect x="108" y="294" width="130" height="8" rx="4" fill="#2D4566" opacity="0.4"/>
+  <text x="193" y="438" text-anchor="middle" fill="#5070A0" font-size="11" font-family="ui-monospace,Menlo,monospace">docs/quickstart.md</text>
+
+  <!-- Doc card 1 (front) -->
+  <rect x="112" y="170" width="210" height="270" rx="12" fill="#1E3355" stroke="#3A5580" stroke-width="1.5"/>
+  <rect x="112" y="170" width="210" height="8" rx="4" fill="#4F46E5" opacity="0.9"/>
+  <rect x="132" y="196" width="140" height="11" rx="4" fill="#2E4878" opacity="0.9"/>
+  <rect x="132" y="218" width="170" height="8" rx="4" fill="#2E4878" opacity="0.75"/>
+  <rect x="132" y="236" width="120" height="8" rx="4" fill="#2E4878" opacity="0.6"/>
+  <rect x="132" y="254" width="155" height="8" rx="4" fill="#2E4878" opacity="0.55"/>
+  <rect x="132" y="272" width="100" height="8" rx="4" fill="#2E4878" opacity="0.45"/>
+  <rect x="132" y="296" width="140" height="8" rx="4" fill="#2E4878" opacity="0.45"/>
+  <rect x="132" y="314" width="165" height="8" rx="4" fill="#2E4878" opacity="0.4"/>
+  <rect x="132" y="332" width="110" height="8" rx="4" fill="#2E4878" opacity="0.35"/>
+  <text x="217" y="414" text-anchor="middle" fill="#6080B0" font-size="11" font-family="ui-monospace,Menlo,monospace">docs/installation.md</text>
+
+  <!-- GithubSource label -->
+  <rect x="98" y="458" width="160" height="26" rx="13" fill="#4F46E5" opacity="0.18" stroke="#4F46E5" stroke-width="1"/>
+  <text x="178" y="475" text-anchor="middle" fill="#818CF8" font-size="12" font-weight="600">GithubSource.fetch()</text>
+
+  <!-- ── Center: chunking transform ── -->
+  <!-- Flow arrow -->
+  <rect x="358" y="304" width="100" height="3" rx="1.5" fill="url(#arrowgrad)"/>
+  <polygon points="458,298 474,305.5 458,313" fill="#4F46E5" opacity="0.6"/>
+
+  <!-- Chunk stack -->
+  <g>
+    <!-- chunk 0 -->
+    <rect x="500" y="192" width="200" height="60" rx="8" fill="#1A3450" stroke="#0E9488" stroke-width="1.5"/>
+    <rect x="500" y="192" width="200" height="4" rx="2" fill="#0E9488" opacity="0.9"/>
+    <rect x="514" y="208" width="140" height="8" rx="3" fill="#1E4A66" opacity="0.9"/>
+    <rect x="514" y="224" width="110" height="8" rx="3" fill="#1E4A66" opacity="0.7"/>
+    <text x="700" y="228" text-anchor="end" fill="#2DD4C0" font-size="10" font-family="ui-monospace,Menlo,monospace" opacity="0.8">content[0:1000]</text>
+
+    <!-- chunk 1 -->
+    <rect x="500" y="264" width="200" height="60" rx="8" fill="#1A3450" stroke="#4F46E5" stroke-width="1.5"/>
+    <rect x="500" y="264" width="200" height="4" rx="2" fill="#4F46E5" opacity="0.9"/>
+    <rect x="514" y="280" width="150" height="8" rx="3" fill="#1E3A70" opacity="0.9"/>
+    <rect x="514" y="296" width="90" height="8" rx="3" fill="#1E3A70" opacity="0.7"/>
+    <text x="700" y="300" text-anchor="end" fill="#818CF8" font-size="10" font-family="ui-monospace,Menlo,monospace" opacity="0.8">content[800:1800]</text>
+
+    <!-- chunk 2 -->
+    <rect x="500" y="336" width="200" height="60" rx="8" fill="#1A3450" stroke="#0E9488" stroke-width="1.5"/>
+    <rect x="500" y="336" width="200" height="4" rx="2" fill="#0E9488" opacity="0.9"/>
+    <rect x="514" y="352" width="130" height="8" rx="3" fill="#1E4A66" opacity="0.9"/>
+    <rect x="514" y="368" width="155" height="8" rx="3" fill="#1E4A66" opacity="0.7"/>
+    <text x="700" y="372" text-anchor="end" fill="#2DD4C0" font-size="10" font-family="ui-monospace,Menlo,monospace" opacity="0.8">content[1600:2600]</text>
+
+    <!-- chunk 3 -->
+    <rect x="500" y="408" width="200" height="60" rx="8" fill="#1A3450" stroke="#4F46E5" stroke-width="1.5"/>
+    <rect x="500" y="408" width="200" height="4" rx="2" fill="#4F46E5" opacity="0.9"/>
+    <rect x="514" y="424" width="120" height="8" rx="3" fill="#1E3A70" opacity="0.9"/>
+    <rect x="514" y="440" width="160" height="8" rx="3" fill="#1E3A70" opacity="0.7"/>
+    <text x="700" y="444" text-anchor="end" fill="#818CF8" font-size="10" font-family="ui-monospace,Menlo,monospace" opacity="0.8">content[2400:3400]</text>
+  </g>
+
+  <!-- chunk_documents label -->
+  <rect x="490" y="484" width="220" height="26" rx="13" fill="#0E9488" opacity="0.15" stroke="#0E9488" stroke-width="1"/>
+  <text x="600" y="501" text-anchor="middle" fill="#2DD4C0" font-size="12" font-weight="600">chunk_documents()</text>
+
+  <!-- ── Right: answer arrow + output ── -->
+  <rect x="736" y="304" width="80" height="3" rx="1.5" fill="url(#arrowgrad)"/>
+  <polygon points="816,298 832,305.5 816,313" fill="#0E9488" opacity="0.6"/>
+
+  <!-- Answer card -->
+  <rect x="858" y="170" width="280" height="300" rx="16" fill="#122030" stroke="#0E9488" stroke-width="1.5"/>
+  <rect x="858" y="170" width="280" height="6" rx="3" fill="#0E9488" opacity="0.8"/>
+
+  <!-- agent badge -->
+  <rect x="874" y="192" width="140" height="24" rx="12" fill="#0E9488" opacity="0.2"/>
+  <text x="944" y="208" text-anchor="middle" fill="#2DD4C0" font-size="11" font-weight="600">pydantic-ai agent</text>
+
+  <!-- answer text lines -->
+  <rect x="874" y="232" width="248" height="10" rx="4" fill="#1A3540" opacity="0.9"/>
+  <rect x="874" y="252" width="220" height="10" rx="4" fill="#1A3540" opacity="0.8"/>
+  <rect x="874" y="272" width="248" height="10" rx="4" fill="#1A3540" opacity="0.7"/>
+  <rect x="874" y="292" width="190" height="10" rx="4" fill="#1A3540" opacity="0.6"/>
+  <rect x="874" y="318" width="230" height="10" rx="4" fill="#1A3540" opacity="0.55"/>
+  <rect x="874" y="338" width="248" height="10" rx="4" fill="#1A3540" opacity="0.5"/>
+  <rect x="874" y="358" width="160" height="10" rx="4" fill="#1A3540" opacity="0.45"/>
+
+  <!-- streaming cursor -->
+  <rect x="874" y="396" width="3" height="18" rx="1" fill="#0E9488" opacity="0.9"/>
+
+  <text x="998" y="450" text-anchor="middle" fill="#3A6060" font-size="11" font-family="ui-monospace,Menlo,monospace">streaming answer</text>
+
+  <!-- ── Main title ── -->
+  <text x="600" y="86" text-anchor="middle" fill="#F1F5F9" font-size="48" font-weight="800" letter-spacing="-1.5">From Documents to Answers</text>
+  <text x="600" y="130" text-anchor="middle" fill="#64748B" font-size="19" font-weight="400" letter-spacing="0">Building a full RAG pipeline with chunking, retrieval, and an LLM</text>
+
+  <!-- Divider line -->
+  <line x1="420" y1="152" x2="780" y2="152" stroke="#1E293B" stroke-width="1.5"/>
+  <circle cx="600" cy="152" r="3" fill="#4F46E5" opacity="0.6"/>
+
+  <!-- Bottom tag pills -->
+  <rect x="426" y="560" width="100" height="28" rx="14" fill="#4F46E5" opacity="0.15" stroke="#4F46E5" stroke-width="1"/>
+  <text x="476" y="578" text-anchor="middle" fill="#818CF8" font-size="12" font-weight="500">minsearch</text>
+
+  <rect x="540" y="560" width="120" height="28" rx="14" fill="#0E9488" opacity="0.15" stroke="#0E9488" stroke-width="1"/>
+  <text x="600" y="578" text-anchor="middle" fill="#2DD4C0" font-size="12" font-weight="500">pydantic-ai</text>
+
+  <rect x="674" y="560" width="100" height="28" rx="14" fill="#4F46E5" opacity="0.15" stroke="#4F46E5" stroke-width="1"/>
+  <text x="724" y="578" text-anchor="middle" fill="#818CF8" font-size="12" font-weight="500">OpenRouter</text>
+</svg>

@@ -1,0 +1,53 @@
+name: Publish blog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "blog/**"
+      - ".eleventy.js"
+      - "scripts/**"
+      - "_includes/**"
+      - "package.json"
+      - ".github/workflows/publish.yml"
+  workflow_dispatch: {}
+
+# Allow this workflow to publish to GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; don't cancel an in-flight publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build site (rasterizes SVGs + runs Eleventy)
+        run: npm run build
+        env:
+          # MUST match your Pages root. No trailing slash, no subpath.
+          SITE_URL: https://blog.orbitshift.ai
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

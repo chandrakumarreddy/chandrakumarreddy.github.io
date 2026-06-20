@@ -1,0 +1,99 @@
+<svg viewBox="0 0 960 380" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;">
+  <defs>
+    <marker id="arrowI" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M1 1 L7 4 L1 7z" fill="#0E9488"/>
+    </marker>
+    <marker id="arrowQ" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M1 1 L7 4 L1 7z" fill="#4F46E5"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="380" fill="#FFFFFF" rx="16"/>
+  <rect width="960" height="380" fill="#F8FAFC" rx="16"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" fill="#0F172A" font-size="15" font-weight="700">RAG Pipeline — Two Phases</text>
+  <text x="480" y="56" text-anchor="middle" fill="#94A3B8" font-size="11">rag_search_chunk_llm.py · rag_chunk_docs.py · githubsource.py</text>
+
+  <!-- ═══════════ INDEXING PHASE ═══════════ -->
+  <!-- Phase label pill -->
+  <rect x="32" y="78" width="132" height="24" rx="12" fill="#ECFDF5" stroke="#0E9488" stroke-width="1"/>
+  <circle cx="47" cy="90" r="4" fill="#0E9488"/>
+  <text x="88" y="94" text-anchor="middle" fill="#0E9488" font-size="11" font-weight="700">INDEXING · once</text>
+
+  <!-- Node 1: GithubSource -->
+  <rect x="32" y="116" width="162" height="72" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="32" y="116" width="162" height="4" rx="2" fill="#0E9488"/>
+  <text x="113" y="146" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">GithubSource</text>
+  <text x="113" y="163" text-anchor="middle" fill="#64748B" font-size="11" font-family="ui-monospace,Menlo,monospace">.fetch()</text>
+  <text x="113" y="179" text-anchor="middle" fill="#94A3B8" font-size="10">downloads .md / .mdx</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="196" y1="152" x2="232" y2="152" stroke="#0E9488" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowI)"/>
+
+  <!-- Node 2: chunk_documents -->
+  <rect x="234" y="116" width="180" height="72" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="234" y="116" width="180" height="4" rx="2" fill="#0E9488"/>
+  <text x="324" y="146" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">chunk_documents()</text>
+  <text x="324" y="163" text-anchor="middle" fill="#64748B" font-size="11" font-family="ui-monospace,Menlo,monospace">githubsource.py</text>
+  <text x="324" y="179" text-anchor="middle" fill="#94A3B8" font-size="10">size=1000 · overlap=200</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="416" y1="152" x2="452" y2="152" stroke="#0E9488" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowI)"/>
+
+  <!-- Node 3: minsearch.Index -->
+  <rect x="454" y="116" width="162" height="72" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="454" y="116" width="162" height="4" rx="2" fill="#0E9488"/>
+  <text x="535" y="146" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">minsearch.Index</text>
+  <text x="535" y="163" text-anchor="middle" fill="#64748B" font-size="11" font-family="ui-monospace,Menlo,monospace">index.fit(chunks)</text>
+  <text x="535" y="179" text-anchor="middle" fill="#94A3B8" font-size="10">text + keyword fields</text>
+
+  <!-- "index reused" annotation -->
+  <line x1="535" y1="188" x2="535" y2="222" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="535" y1="222" x2="348" y2="222" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="348" y1="222" x2="348" y2="282" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowQ)"/>
+  <rect x="388" y="211" width="148" height="22" rx="4" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="462" y="226" text-anchor="middle" fill="#94A3B8" font-size="10">reused for every query</text>
+
+  <!-- ═══════════ QUERY PHASE ═══════════ -->
+  <rect x="32" y="248" width="120" height="24" rx="12" fill="#EEF2FF" stroke="#4F46E5" stroke-width="1"/>
+  <circle cx="47" cy="260" r="4" fill="#4F46E5"/>
+  <text x="82" y="264" text-anchor="middle" fill="#4F46E5" font-size="11" font-weight="700">QUERY · loop</text>
+
+  <!-- Node A: User query -->
+  <rect x="32" y="286" width="140" height="62" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="32" y="286" width="140" height="4" rx="2" fill="#4F46E5"/>
+  <text x="102" y="313" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">User query</text>
+  <text x="102" y="332" text-anchor="middle" fill="#94A3B8" font-size="10">stdin · REPL</text>
+
+  <!-- Arrow A→B -->
+  <line x1="174" y1="317" x2="208" y2="317" stroke="#4F46E5" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowQ)"/>
+
+  <!-- Node B: index.search -->
+  <rect x="210" y="286" width="160" height="62" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="210" y="286" width="160" height="4" rx="2" fill="#4F46E5"/>
+  <text x="290" y="313" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">index.search()</text>
+  <text x="290" y="329" text-anchor="middle" fill="#64748B" font-size="11" font-family="ui-monospace,Menlo,monospace">boost content 1.5×</text>
+  <text x="290" y="342" text-anchor="middle" fill="#94A3B8" font-size="10">top 10 chunks</text>
+
+  <!-- Arrow B→C -->
+  <line x1="372" y1="317" x2="406" y2="317" stroke="#4F46E5" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowQ)"/>
+
+  <!-- Node C: format_context -->
+  <rect x="408" y="286" width="160" height="62" rx="10" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="408" y="286" width="160" height="4" rx="2" fill="#4F46E5"/>
+  <text x="488" y="313" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">format_context()</text>
+  <text x="488" y="329" text-anchor="middle" fill="#64748B" font-size="11" font-family="ui-monospace,Menlo,monospace">source + content</text>
+  <text x="488" y="342" text-anchor="middle" fill="#94A3B8" font-size="10">structured blocks</text>
+
+  <!-- Arrow C→D -->
+  <line x1="570" y1="317" x2="604" y2="317" stroke="#4F46E5" stroke-width="1.5" stroke-opacity="0.7" marker-end="url(#arrowQ)"/>
+
+  <!-- Node D: pydantic-ai agent (highlighted) -->
+  <rect x="606" y="280" width="198" height="74" rx="10" fill="#EEF2FF" stroke="#4F46E5" stroke-width="2"/>
+  <rect x="606" y="280" width="198" height="5" rx="2.5" fill="#4F46E5"/>
+  <text x="705" y="309" text-anchor="middle" fill="#3730A3" font-size="13" font-weight="700">pydantic-ai Agent</text>
+  <text x="705" y="326" text-anchor="middle" fill="#6366F1" font-size="11" font-family="ui-monospace,Menlo,monospace">OpenRouter · stream</text>
+  <text x="705" y="342" text-anchor="middle" fill="#818CF8" font-size="10">grounded answer</text>
+</svg>

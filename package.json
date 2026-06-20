@@ -1,0 +1,18 @@
+{
+  "name": "site-test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build:assets": "node scripts/build-assets.js",
+    "build": "npm run build:assets && eleventy",
+    "serve": "npm run build:assets && eleventy --serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "sharp": "^0.33.5"
+  }
+}
