@@ -8,10 +8,24 @@ const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
 const SITE_URL = (
   process.env.SITE_URL || "https://chandrakumarreddy.github.io"
 ).replace(/\/$/, "");
-const SITE_TITLE = "OrbitShift Engineering";
-const SITE_DESC = "Engineering write-ups from the OrbitShift team.";
+const SITE_TITLE = "Chandra Kumar Reddy";
+const SITE_DESC =
+  "A software engineer's notes on full-stack engineering, ML, infrastructure, and system design.";
 
 module.exports = function (eleventyConfig) {
+  // Don't build repo docs as pages.
+  eleventyConfig.ignores.add("README.md");
+
+  // Human-readable date filter (Nunjucks has none built in).
+  eleventyConfig.addFilter("readableDate", (d) =>
+    new Date(d).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      timeZone: "UTC",
+    }),
+  );
+
   // Copy generated assets to the site root: blog/assets/** -> /assets/**
   eleventyConfig.addPassthroughCopy({ "blog/assets": "assets" });
 
@@ -32,7 +46,7 @@ module.exports = function (eleventyConfig) {
       language: "en",
       title: SITE_TITLE,
       subtitle: SITE_DESC,
-      base: "https://chanddrakumarreddy.github.io/",
+      base: SITE_URL + "/",
       author: { name: "OrbitShift Engineering" },
     },
   });
@@ -55,7 +69,6 @@ module.exports = function (eleventyConfig) {
 
   return {
     dir: { input: ".", includes: "_includes", output: "_site" },
-    pathPrefix: "/tech-blog-posts/",
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
   };
