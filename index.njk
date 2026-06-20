@@ -10,12 +10,9 @@ permalink: "/index.html"
       <li>
         <article class="entry">
           <a href="{{ post.url }}">
+            <h2>{{ post.data.title }}</h2>
+            {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
             <span class="date">{{ post.date | readableDate }}</span>
-            <span class="body">
-              <h2>{{ post.data.title }}</h2>
-              {% if post.data.description %}<p>{{ post.data.description }}</p>{% endif %}
-              <span class="arrow">read →</span>
-            </span>
           </a>
         </article>
       </li>
