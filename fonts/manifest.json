@@ -1,0 +1,14 @@
+[
+  {
+    "family": "Google Sans Flex",
+    "weight": 400,
+    "subset": "latin",
+    "file": "google-sans-flex-400-latin.woff2"
+  },
+  {
+    "family": "Google Sans Flex",
+    "weight": 700,
+    "subset": "latin",
+    "file": "google-sans-flex-700-latin.woff2"
+  }
+]

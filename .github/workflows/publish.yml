@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "blog/**"
+      - "fonts/**"
       - ".eleventy.js"
       - "scripts/**"
       - "_includes/**"

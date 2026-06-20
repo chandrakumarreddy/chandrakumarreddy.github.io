@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "fonts": "node scripts/fetch-fonts.js",
     "build:assets": "node scripts/build-assets.js",
     "build": "npm run build:assets && eleventy",
     "serve": "npm run build:assets && eleventy --serve"
