@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} — {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ site.url }}/feed.xml">
+
+  <!-- Open Graph: use the post's hero PNG when present -->
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="{{ 'article' if title else 'website' }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:      #FAFAF7;   /* cool off-white, not cream */
+      --ink:     #14151A;   /* near-black text */
+      --muted:   #6B6F76;   /* metadata, captions */
+      --hair:    #E6E5DF;   /* hairline rules */
+      --accent:  #2540FF;   /* one confident ink-blue */
+      --accent-soft: #E9ECFF;
+      --code-bg: #F2F2EE;
+
+      --display: "Space Grotesk", system-ui, sans-serif;
+      --body:    "Inter", system-ui, sans-serif;
+      --mono:    "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+      --measure: 64ch;
+      --gutter:  clamp(1.25rem, 5vw, 3rem);
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ── Masthead ─────────────────────────────────────── */
+    .masthead { padding: clamp(3rem, 9vw, 6rem) 0 0; }
+    .masthead a.brand {
+      display: inline-block; text-decoration: none; color: var(--ink);
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: -0.03em;
+    }
+    .masthead .tagline {
+      margin: 0.4rem 0 0; max-width: 48ch;
+      color: var(--muted); font-size: 0.98rem;
+    }
+    .masthead .meta {
+      margin-top: 1rem; font-family: var(--mono); font-size: 0.74rem;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted);
+    }
+    .masthead .meta a { color: var(--accent); text-decoration: none; }
+    .masthead .meta a:hover { text-decoration: underline; }
+
+    /* ── Post index (the "ledger") ────────────────────── */
+    .index { margin: clamp(2.5rem, 7vw, 4rem) 0 5rem; }
+    .index ol { list-style: none; margin: 0; padding: 0; }
+    .entry { border-top: 1px solid var(--hair); }
+    .index ol li:last-child .entry { border-bottom: 1px solid var(--hair); }
+    .entry a {
+      display: grid; grid-template-columns: 7.5rem 1fr; gap: 0 1.5rem;
+      padding: 1.6rem 0; text-decoration: none; color: var(--ink);
+      transition: background-color .18s ease;
+    }
+    .entry a:hover, .entry a:focus-visible { background: linear-gradient(90deg, var(--accent-soft), transparent 60%); }
+    .entry a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .entry .date {
+      font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+      padding-top: 0.45rem; white-space: nowrap;
+    }
+    .entry .body h2 {
+      margin: 0; font-family: var(--display); font-weight: 600;
+      font-size: clamp(1.15rem, 2.6vw, 1.4rem); line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+    .entry a:hover .body h2 { color: var(--accent); }
+    .entry .body p { margin: 0.4rem 0 0; color: var(--muted); font-size: 0.97rem; line-height: 1.55; }
+    .entry .body .arrow {
+      font-family: var(--mono); color: var(--accent); opacity: 0;
+      transition: opacity .18s ease, transform .18s ease; transform: translateX(-4px);
+    }
+    .entry a:hover .arrow, .entry a:focus-visible .arrow { opacity: 1; transform: translateX(0); }
+
+    @media (max-width: 560px) {
+      .entry a { grid-template-columns: 1fr; gap: 0.35rem 0; padding: 1.3rem 0; }
+      .entry .date { padding-top: 0; }
+    }
+
+    /* ── Article ──────────────────────────────────────── */
+    .article { padding: clamp(2.5rem, 7vw, 4rem) 0 5rem; }
+    .article .back {
+      display: inline-block; margin-bottom: 2rem;
+      font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.03em;
+      color: var(--accent); text-decoration: none;
+    }
+    .article .back:hover { text-decoration: underline; }
+    .article .post-meta {
+      font-family: var(--mono); font-size: 0.76rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.6rem;
+    }
+    .article h1 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(1.9rem, 5.5vw, 2.9rem); line-height: 1.1;
+      letter-spacing: -0.03em; margin: 0 0 2rem; max-width: 20ch;
+    }
+    .prose { max-width: var(--measure); }
+    .prose > * { margin-block: 1.15rem; }
+    .prose h2 {
+      font-family: var(--display); font-weight: 600; letter-spacing: -0.015em;
+      font-size: 1.5rem; margin-top: 2.75rem; line-height: 1.2;
+    }
+    .prose h3 { font-family: var(--display); font-weight: 600; font-size: 1.2rem; margin-top: 2rem; }
+    .prose a { color: var(--accent); text-underline-offset: 2px; }
+    .prose img {
+      display: block; max-width: 100%; height: auto;
+      border-radius: 10px; border: 1px solid var(--hair); margin-block: 2rem;
+    }
+    .prose img[src*="/hero"] { border: none; border-radius: 12px; }
+    .prose pre {
+      background: var(--code-bg); border: 1px solid var(--hair);
+      padding: 1.1rem 1.25rem; border-radius: 10px; overflow-x: auto;
+      font-size: 0.86rem; line-height: 1.55;
+    }
+    .prose code { font-family: var(--mono); font-size: 0.88em; }
+    .prose :not(pre) > code {
+      background: var(--code-bg); padding: 0.12em 0.38em; border-radius: 5px;
+    }
+    .prose blockquote {
+      margin-inline: 0; padding-left: 1.1rem; border-left: 3px solid var(--accent);
+      color: var(--muted); font-style: italic;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--hair); padding: 2rem 0 4rem;
+      font-family: var(--mono); font-size: 0.74rem; color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap">
+      <a class="brand" href="/">{{ site.title }}</a>
+      <p class="tagline">{{ site.description }}</p>
+      <p class="meta">Engineering notes · <a href="/feed.xml">RSS</a></p>
+    </div>
+  </header>
+
+  {{ content | safe }}
+
+  <footer>
+    <div class="wrap">© {{ site.title }} · built from markdown, <a href="/feed.xml">syndicated via RSS</a></div>
+  </footer>
+</body>
+</html>
