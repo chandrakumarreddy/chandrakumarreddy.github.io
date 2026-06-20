@@ -10,7 +10,7 @@ const SITE_URL = (
 ).replace(/\/$/, "");
 const SITE_TITLE = "Chandra Kumar Reddy";
 const SITE_DESC =
-  "A software engineer's notes on full-stack engineering, ML, infrastructure, and system design.";
+  "Engineering notes on RAG, Postgres, async Python, and building OrbitShift.";
 
 module.exports = function (eleventyConfig) {
   // Don't build repo docs as pages.
@@ -24,6 +24,53 @@ module.exports = function (eleventyConfig) {
       day: "numeric",
       timeZone: "UTC",
     }),
+  );
+
+  // Estimate reading time from rendered HTML (~200 wpm).
+  eleventyConfig.addFilter("readingTime", (html) => {
+    const words = String(html || "")
+      .replace(/<[^>]+>/g, " ")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean).length;
+    return Math.max(1, Math.round(words / 200));
+  });
+
+  // Categories for the pill: explicit `categories` frontmatter, else tags minus "posts".
+  eleventyConfig.addFilter("pillCategories", (data) => {
+    if (data.categories && data.categories.length) return data.categories;
+    return (data.tags || []).filter((t) => t !== "posts");
+  });
+
+  // Serialize all posts to JSON for the client-side search/filter/pagination UI.
+  eleventyConfig.addFilter("postsJson", (posts) =>
+    JSON.stringify(
+      posts.map((p) => {
+        const words = String(p.templateContent || "")
+          .replace(/<[^>]+>/g, " ")
+          .trim()
+          .split(/\s+/)
+          .filter(Boolean).length;
+        const cats =
+          p.data.categories && p.data.categories.length
+            ? p.data.categories
+            : (p.data.tags || []).filter((t) => t !== "posts");
+        return {
+          title: p.data.title,
+          url: p.url,
+          description: p.data.description || "",
+          date: new Date(p.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+            timeZone: "UTC",
+          }),
+          minutes: Math.max(1, Math.round(words / 200)),
+          categories: cats,
+          thumb: "/assets/" + p.fileSlug + "/hero.png",
+        };
+      }),
+    ),
   );
 
   // Copy generated assets to the site root: blog/assets/** -> /assets/**
