@@ -1,0 +1,87 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="arrowgrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0E9488" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Ambient glows -->
+  <ellipse cx="180" cy="470" rx="260" ry="170" fill="#4F46E5" opacity="0.08"/>
+  <ellipse cx="1000" cy="470" rx="280" ry="170" fill="#0E9488" opacity="0.07"/>
+
+  <!-- ── Title ── -->
+  <text x="600" y="84" text-anchor="middle" fill="#F1F5F9" font-size="46" font-weight="800" letter-spacing="-1.5">An RSS-Driven Pipeline</text>
+  <text x="600" y="126" text-anchor="middle" fill="#64748B" font-size="19">One Git source, one full-content feed, syndication on top</text>
+  <line x1="430" y1="148" x2="770" y2="148" stroke="#1E293B" stroke-width="1.5"/>
+  <circle cx="600" cy="148" r="3" fill="#4F46E5" opacity="0.7"/>
+
+  <!-- ── Left: Git repo of markdown ── -->
+  <rect x="72" y="232" width="200" height="240" rx="14" fill="#1E3355" stroke="#3A5580" stroke-width="1.5"/>
+  <rect x="72" y="232" width="200" height="8" rx="4" fill="#4F46E5" opacity="0.9"/>
+  <!-- markdown lines -->
+  <rect x="94" y="262" width="120" height="9" rx="4" fill="#2E4878" opacity="0.9"/>
+  <rect x="94" y="282" width="156" height="8" rx="4" fill="#2E4878" opacity="0.7"/>
+  <rect x="94" y="300" width="110" height="8" rx="4" fill="#2E4878" opacity="0.6"/>
+  <rect x="94" y="318" width="150" height="8" rx="4" fill="#2E4878" opacity="0.5"/>
+  <rect x="94" y="336" width="96" height="8" rx="4" fill="#2E4878" opacity="0.45"/>
+  <rect x="94" y="362" width="130" height="8" rx="4" fill="#2E4878" opacity="0.4"/>
+  <rect x="94" y="380" width="160" height="8" rx="4" fill="#2E4878" opacity="0.35"/>
+  <text x="172" y="450" text-anchor="middle" fill="#6080B0" font-size="12" font-family="ui-monospace,Menlo,monospace">blog/*.md</text>
+  <rect x="92" y="484" width="160" height="26" rx="13" fill="#4F46E5" opacity="0.18" stroke="#4F46E5" stroke-width="1"/>
+  <text x="172" y="501" text-anchor="middle" fill="#818CF8" font-size="12" font-weight="600">Git: source of truth</text>
+
+  <!-- arrow repo -> feed -->
+  <rect x="290" y="350" width="78" height="3" rx="1.5" fill="url(#arrowgrad)"/>
+  <polygon points="368,344 384,351.5 368,359" fill="#4F46E5" opacity="0.7"/>
+  <text x="328" y="336" text-anchor="middle" fill="#475569" font-size="11" font-family="ui-monospace,Menlo,monospace">build</text>
+
+  <!-- ── Center: feed.xml hub ── -->
+  <circle cx="600" cy="352" r="96" fill="#122a2e" stroke="#0E9488" stroke-width="2" filter="url(#softglow)"/>
+  <circle cx="600" cy="352" r="96" fill="none" stroke="#0E9488" stroke-width="0.5" opacity="0.4"/>
+  <text x="600" y="342" text-anchor="middle" fill="#2DD4C0" font-size="22" font-weight="800" font-family="ui-monospace,Menlo,monospace">feed.xml</text>
+  <text x="600" y="368" text-anchor="middle" fill="#5e9a92" font-size="12">full content</text>
+  <text x="600" y="386" text-anchor="middle" fill="#5e9a92" font-size="12">absolute URLs</text>
+
+  <!-- arrows feed -> consumers -->
+  <line x1="688" y1="318" x2="900" y2="232" stroke="url(#arrowgrad)" stroke-width="3"/>
+  <line x1="696" y1="352" x2="900" y2="352" stroke="url(#arrowgrad)" stroke-width="3"/>
+  <line x1="688" y1="386" x2="900" y2="472" stroke="url(#arrowgrad)" stroke-width="3"/>
+
+  <!-- ── Right: consumers ── -->
+  <!-- static site -->
+  <rect x="908" y="208" width="220" height="56" rx="12" fill="#1A2840" stroke="#2D4468" stroke-width="1.5"/>
+  <rect x="908" y="208" width="6" height="56" rx="3" fill="#4F46E5"/>
+  <text x="932" y="234" fill="#CBD5E1" font-size="14" font-weight="600">Static site + readers</text>
+  <text x="932" y="252" fill="#5B7299" font-size="11" font-family="ui-monospace,Menlo,monospace">GitHub Pages · RSS</text>
+
+  <!-- substack -->
+  <rect x="908" y="324" width="220" height="56" rx="12" fill="#1A2840" stroke="#2D4468" stroke-width="1.5"/>
+  <rect x="908" y="324" width="6" height="56" rx="3" fill="#0E9488"/>
+  <text x="932" y="350" fill="#CBD5E1" font-size="14" font-weight="600">Substack</text>
+  <text x="932" y="368" fill="#5B7299" font-size="11" font-family="ui-monospace,Menlo,monospace">RSS import (pull)</text>
+
+  <!-- medium -->
+  <rect x="908" y="440" width="220" height="56" rx="12" fill="#1A2840" stroke="#2D4468" stroke-width="1.5"/>
+  <rect x="908" y="440" width="6" height="56" rx="3" fill="#0E9488"/>
+  <text x="932" y="466" fill="#CBD5E1" font-size="14" font-weight="600">Medium</text>
+  <text x="932" y="484" fill="#5B7299" font-size="11" font-family="ui-monospace,Menlo,monospace">import by URL</text>
+
+  <!-- ── Bottom tag pills ── -->
+  <rect x="438" y="556" width="92" height="28" rx="14" fill="#4F46E5" opacity="0.15" stroke="#4F46E5" stroke-width="1"/>
+  <text x="484" y="574" text-anchor="middle" fill="#818CF8" font-size="12" font-weight="500">Eleventy</text>
+  <rect x="544" y="556" width="112" height="28" rx="14" fill="#0E9488" opacity="0.15" stroke="#0E9488" stroke-width="1"/>
+  <text x="600" y="574" text-anchor="middle" fill="#2DD4C0" font-size="12" font-weight="500">Atom feed</text>
+  <rect x="670" y="556" width="92" height="28" rx="14" fill="#4F46E5" opacity="0.15" stroke="#4F46E5" stroke-width="1"/>
+  <text x="716" y="574" text-anchor="middle" fill="#818CF8" font-size="12" font-weight="500">Actions</text>
+</svg>

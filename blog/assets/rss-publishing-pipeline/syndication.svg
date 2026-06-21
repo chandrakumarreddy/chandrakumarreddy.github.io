@@ -1,0 +1,54 @@
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="pull" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#0E9488" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0E9488" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="520" fill="url(#bg)"/>
+  <ellipse cx="600" cy="280" rx="340" ry="200" fill="#4F46E5" opacity="0.06"/>
+
+  <text x="600" y="56" text-anchor="middle" fill="#F1F5F9" font-size="30" font-weight="800" letter-spacing="-0.5">Syndication is pull, not push</text>
+  <text x="600" y="86" text-anchor="middle" fill="#64748B" font-size="16">Platforms import from you; each sets a canonical link back to the source</text>
+
+  <!-- Center source -->
+  <rect x="500" y="206" width="200" height="108" rx="16" fill="#1E3355" stroke="#3A5580" stroke-width="2"/>
+  <rect x="500" y="206" width="200" height="7" rx="3.5" fill="#4F46E5" opacity="0.9"/>
+  <text x="600" y="250" text-anchor="middle" fill="#F1F5F9" font-size="16" font-weight="700">Your site</text>
+  <text x="600" y="274" text-anchor="middle" fill="#6080B0" font-size="12" font-family="ui-monospace,Menlo,monospace">feed.xml</text>
+  <text x="600" y="294" text-anchor="middle" fill="#6080B0" font-size="12" font-family="ui-monospace,Menlo,monospace">/post URL</text>
+
+  <!-- Substack (left) -->
+  <rect x="96" y="206" width="252" height="108" rx="14" fill="#122a2e" stroke="#0E9488" stroke-width="1.5"/>
+  <text x="222" y="244" text-anchor="middle" fill="#2DD4C0" font-size="17" font-weight="700">Substack</text>
+  <text x="222" y="270" text-anchor="middle" fill="#79b3ab" font-size="12">paste feed URL → import</text>
+  <text x="222" y="290" text-anchor="middle" fill="#5e7d78" font-size="11">arrives Published · no syntax HL</text>
+  <!-- pull arrow source -> substack -->
+  <line x1="500" y1="252" x2="360" y2="252" stroke="url(#pull)" stroke-width="3"/>
+  <polygon points="360,246 344,253 360,260" fill="#0E9488" opacity="0.7"/>
+  <text x="430" y="240" text-anchor="middle" fill="#5e9a92" font-size="11" font-family="ui-monospace,Menlo,monospace">RSS pull</text>
+
+  <!-- Medium (right) -->
+  <rect x="852" y="206" width="252" height="108" rx="14" fill="#122a2e" stroke="#0E9488" stroke-width="1.5"/>
+  <text x="978" y="244" text-anchor="middle" fill="#2DD4C0" font-size="17" font-weight="700">Medium</text>
+  <text x="978" y="270" text-anchor="middle" fill="#79b3ab" font-size="12">Import a story → paste URL</text>
+  <text x="978" y="290" text-anchor="middle" fill="#5e7d78" font-size="11">creates draft · PNGs come through</text>
+  <!-- pull arrow source -> medium -->
+  <line x1="700" y1="252" x2="840" y2="252" stroke="url(#pull)" stroke-width="3" transform="scale(-1,1) translate(-1540,0)"/>
+  <polygon points="840,246 856,253 840,260" fill="#0E9488" opacity="0.7"/>
+  <text x="770" y="240" text-anchor="middle" fill="#5e9a92" font-size="11" font-family="ui-monospace,Menlo,monospace">fetch page</text>
+
+  <!-- canonical back-links -->
+  <path d="M 222 314 C 222 380, 600 400, 600 320" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <path d="M 978 314 C 978 380, 600 400, 600 320" fill="none" stroke="#475569" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <text x="600" y="424" text-anchor="middle" fill="#64748B" font-size="12">rel=canonical → your version stays the original for search</text>
+
+  <!-- footer note -->
+  <rect x="360" y="456" width="480" height="34" rx="17" fill="#4F46E5" opacity="0.12" stroke="#4F46E5" stroke-width="1"/>
+  <text x="600" y="478" text-anchor="middle" fill="#818CF8" font-size="13" font-weight="500">No public write API in 2026 — import is the only durable route</text>
+</svg>

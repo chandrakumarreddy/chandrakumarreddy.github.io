@@ -1,0 +1,70 @@
+<svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0E9488" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="softglow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="560" fill="url(#bg)"/>
+  <ellipse cx="600" cy="300" rx="360" ry="220" fill="#0E9488" opacity="0.06"/>
+
+  <text x="600" y="56" text-anchor="middle" fill="#F1F5F9" font-size="30" font-weight="800" letter-spacing="-0.5">The feed is the load-bearing wall</text>
+  <text x="600" y="86" text-anchor="middle" fill="#64748B" font-size="16">Get the feed right; every consumer is just another view of the same data</text>
+
+  <!-- Source -->
+  <rect x="78" y="232" width="180" height="96" rx="14" fill="#1E3355" stroke="#3A5580" stroke-width="1.5"/>
+  <rect x="78" y="232" width="180" height="7" rx="3.5" fill="#4F46E5" opacity="0.9"/>
+  <text x="168" y="276" text-anchor="middle" fill="#CBD5E1" font-size="15" font-weight="700">Git repo</text>
+  <text x="168" y="298" text-anchor="middle" fill="#6080B0" font-size="12" font-family="ui-monospace,Menlo,monospace">markdown</text>
+
+  <!-- arrow -->
+  <rect x="266" y="278" width="86" height="3" rx="1.5" fill="url(#flow)"/>
+  <polygon points="352,272 368,279.5 352,287" fill="#4F46E5" opacity="0.7"/>
+  <text x="309" y="264" text-anchor="middle" fill="#475569" font-size="11" font-family="ui-monospace,Menlo,monospace">Eleventy build</text>
+
+  <!-- Feed hub -->
+  <rect x="390" y="226" width="200" height="108" rx="16" fill="#122a2e" stroke="#0E9488" stroke-width="2" filter="url(#softglow)"/>
+  <text x="490" y="270" text-anchor="middle" fill="#2DD4C0" font-size="20" font-weight="800" font-family="ui-monospace,Menlo,monospace">feed.xml</text>
+  <text x="490" y="294" text-anchor="middle" fill="#5e9a92" font-size="11">full content · absolute URLs</text>
+  <text x="490" y="312" text-anchor="middle" fill="#5e9a92" font-size="11">stable canonical links</text>
+
+  <!-- fan-out arrows -->
+  <line x1="586" y1="248" x2="724" y2="138" stroke="url(#flow)" stroke-width="2.5"/>
+  <line x1="592" y1="268" x2="724" y2="236" stroke="url(#flow)" stroke-width="2.5"/>
+  <line x1="592" y1="292" x2="724" y2="334" stroke="url(#flow)" stroke-width="2.5"/>
+  <line x1="586" y1="312" x2="724" y2="432" stroke="url(#flow)" stroke-width="2.5"/>
+
+  <!-- consumers -->
+  <g font-size="14" font-weight="600">
+    <rect x="730" y="112" width="300" height="52" rx="12" fill="#1A2840" stroke="#2D4468" stroke-width="1.5"/>
+    <rect x="730" y="112" width="6" height="52" rx="3" fill="#4F46E5"/>
+    <text x="754" y="135" fill="#CBD5E1">Static site (homepage + posts)</text>
+    <text x="754" y="153" fill="#5B7299" font-size="11" font-weight="400" font-family="ui-monospace,Menlo,monospace">one consumer among many</text>
+
+    <rect x="730" y="210" width="300" height="52" rx="12" fill="#1A2840" stroke="#2D4468" stroke-width="1.5"/>
+    <rect x="730" y="210" width="6" height="52" rx="3" fill="#4F46E5"/>
+    <text x="754" y="233" fill="#CBD5E1">Feed readers</text>
+    <text x="754" y="251" fill="#5B7299" font-size="11" font-weight="400" font-family="ui-monospace,Menlo,monospace">NetNewsWire, Feedly…</text>
+
+    <rect x="730" y="308" width="300" height="52" rx="12" fill="#1A2840" stroke="#0E9488" stroke-width="1.5"/>
+    <rect x="730" y="308" width="6" height="52" rx="3" fill="#0E9488"/>
+    <text x="754" y="331" fill="#CBD5E1">Substack importer</text>
+    <text x="754" y="349" fill="#5B7299" font-size="11" font-weight="400" font-family="ui-monospace,Menlo,monospace">pulls full content via RSS</text>
+
+    <rect x="730" y="406" width="300" height="52" rx="12" fill="#1A2840" stroke="#0E9488" stroke-width="1.5"/>
+    <rect x="730" y="406" width="6" height="52" rx="3" fill="#0E9488"/>
+    <text x="754" y="429" fill="#CBD5E1">Medium (import by URL)</text>
+    <text x="754" y="447" fill="#5B7299" font-size="11" font-weight="400" font-family="ui-monospace,Menlo,monospace">reads the rendered page</text>
+  </g>
+
+  <text x="490" y="372" text-anchor="middle" fill="#475569" font-size="12">one contract · many readers</text>
+</svg>
