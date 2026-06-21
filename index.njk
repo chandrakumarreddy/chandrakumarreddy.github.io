@@ -130,6 +130,7 @@ permalink: "/index.html"
           <button class="ctrl-btn" id="filter-btn" aria-haspopup="true" aria-expanded="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
             <span id="filter-label">Filter</span>
+            <span class="filter-clear" id="filter-clear" role="button" aria-label="Clear filter" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
           </button>
           <div class="filter-menu" id="filter-menu" role="menu"></div>
         </div>
@@ -163,6 +164,7 @@ permalink: "/index.html"
     var $filterBtn = document.getElementById("filter-btn");
     var $filterMenu = document.getElementById("filter-menu");
     var $filterLabel = document.getElementById("filter-label");
+    var $filterClear = document.getElementById("filter-clear");
 
     function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
 
@@ -211,6 +213,15 @@ permalink: "/index.html"
       $cards.innerHTML = slice.map(cardHtml).join("");
       $empty.hidden = list.length !== 0;
       $more.hidden = list.length <= state.shown;
+      $filterBtn.classList.toggle("is-active", !!state.cat);
+      $filterClear.hidden = !state.cat;
+    }
+
+    function clearFilter(){
+      state.cat = null; state.shown = STEP;
+      $filterLabel.textContent = "Filter";
+      Array.prototype.forEach.call($filterMenu.children, function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-cat") === ""); });
+      render();
     }
 
     $search.addEventListener("input", function(){ state.q = this.value; state.shown = STEP; render(); });
@@ -219,7 +230,10 @@ permalink: "/index.html"
     $listBtn.addEventListener("click", function(){ state.view = "list"; persistView(); render(); });
     function persistView(){ try { localStorage.setItem("notes-view", state.view); } catch (e) {} }
 
-    $filterBtn.addEventListener("click", function(e){ e.stopPropagation(); var open=$filterMenu.classList.toggle("open"); $filterBtn.setAttribute("aria-expanded", open); });
+    $filterBtn.addEventListener("click", function(e){
+      if (e.target.closest("#filter-clear")) { e.stopPropagation(); clearFilter(); return; }
+      e.stopPropagation(); var open=$filterMenu.classList.toggle("open"); $filterBtn.setAttribute("aria-expanded", open);
+    });
     document.addEventListener("click", function(){ $filterMenu.classList.remove("open"); $filterBtn.setAttribute("aria-expanded","false"); });
     $filterMenu.addEventListener("click", function(e){
       var b = e.target.closest("button"); if(!b) return;
