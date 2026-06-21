@@ -4,6 +4,8 @@ title: "From Documents to Answers: Building a Full RAG Pipeline with Chunking an
 description: "How chunking, minsearch retrieval, and a pydantic-ai agent combine into a single pipeline that answers questions about any GitHub repo's documentation."
 date: 2026-06-20
 prNumber: 3
+categories: [Engineering, AI]
+keywords: [RAG, chunking, retrieval, minsearch, pydantic-ai, LLM, OpenRouter, embeddings, BM25, GitHub docs]
 tags: posts
 ---
 

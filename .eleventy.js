@@ -89,6 +89,7 @@ module.exports = function (eleventyConfig) {
           }),
           minutes: Math.max(1, Math.round(words / 200)),
           categories: cats,
+          keywords: p.data.keywords || [],
           thumb: "/assets/" + p.fileSlug + "/hero.png",
         };
       }),

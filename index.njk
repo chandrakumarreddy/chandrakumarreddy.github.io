@@ -178,7 +178,7 @@ permalink: "/index.html"
       var q = state.q.toLowerCase();
       return DATA.filter(function(p){
         var inCat = !state.cat || (p.categories||[]).indexOf(state.cat) >= 0;
-        var hay = (p.title+" "+p.description+" "+(p.categories||[]).join(" ")).toLowerCase();
+        var hay = (p.title+" "+p.description+" "+(p.categories||[]).join(" ")+" "+(p.keywords||[]).join(" ")).toLowerCase();
         return inCat && (!q || hay.indexOf(q) >= 0);
       });
     }
@@ -190,16 +190,24 @@ permalink: "/index.html"
     function thumbHtml(p){
       return '<span class="thumb"><img src="'+esc(p.thumb)+'" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'fallback\');this.remove()"></span>';
     }
+    function tagsHtml(p){
+      var kws = (p.keywords||[]).slice(0, 3);
+      if (!kws.length) return "";
+      return '<ul class="card-tags">'+kws.map(function(k){ return '<li>'+esc(k)+'</li>'; }).join("")+'</ul>';
+    }
     function cardHtml(p){
       var cat = (p.categories||[]).join(" · ");
       return '<article class="card"><a class="cardlink" href="'+esc(p.url)+'">'+
-        '<div class="top">'+thumbHtml(p)+
-          '<div class="txt">'+(cat?'<span class="pill-cat">'+esc(cat)+'</span>':'')+
-            '<h3>'+esc(p.title)+'</h3>'+
-            '<p class="dek">'+esc(p.description)+'</p>'+
-          '</div></div>'+
-        '<div class="meta">'+metaHtml(p)+'</div>'+
-        '<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span>'+
+        thumbHtml(p)+
+        '<div class="body">'+
+          (cat?'<span class="pill-cat">'+esc(cat)+'</span>':'')+
+          '<h3>'+esc(p.title)+'</h3>'+
+          '<p class="dek">'+esc(p.description)+'</p>'+
+          tagsHtml(p)+
+          '<div class="meta">'+metaHtml(p)+
+            '<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span>'+
+          '</div>'+
+        '</div>'+
       '</a></article>';
     }
 

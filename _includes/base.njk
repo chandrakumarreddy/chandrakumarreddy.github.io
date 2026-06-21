@@ -10,6 +10,9 @@
   {%- set ogImage = (site.url + "/assets/" + page.fileSlug + "/hero.png") if isPost else (site.url + "/assets/" + (latestPost.fileSlug if latestPost else "") + "/hero.png") %}
   <title>{% if title %}{{ title }} — {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ metaDesc }}">
+  {%- if keywords and keywords.length %}
+  <meta name="keywords" content="{{ keywords | join(', ') }}">
+  {%- endif %}
   <meta name="author" content="{{ site.title }}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="{{ pageUrl }}">
@@ -42,6 +45,9 @@
     "@type": "BlogPosting",
     "headline": {{ title | dump | safe }},
     "description": {{ metaDesc | dump | safe }},
+    {%- if keywords and keywords.length %}
+    "keywords": {{ keywords | join(", ") | dump | safe }},
+    {%- endif %}
     "image": "{{ ogImage }}",
     "datePublished": "{{ page.date | htmlDateString }}",
     "dateModified": "{{ page.date | htmlDateString }}",
@@ -235,30 +241,40 @@
     .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; }
     @media (max-width:900px){ .cards{ grid-template-columns:repeat(2,1fr); } }
     @media (max-width:600px){ .cards{ grid-template-columns:1fr; } }
-    .card { background:var(--surface); border:1px solid var(--hair); border-radius:16px; box-shadow:var(--shadow-sm); overflow:hidden; transition:transform .14s ease, box-shadow .2s ease; }
-    .card:hover { transform:translateY(-3px); box-shadow:var(--shadow); }
-    .card a.cardlink { display:block; text-decoration:none; color:inherit; height:100%; }
-    .card .top { display:flex; gap:1rem; padding:1.15rem 1.15rem 0; }
-    .card .txt { flex:1; min-width:0; }
-    .card .thumb { width:78px; height:78px; flex:none; border-radius:12px; overflow:hidden; background:var(--bg-tint); display:grid; place-items:center; }
-    .card .thumb img { width:100%; height:100%; object-fit:cover; }
-    .card .thumb.fallback::after { content:"</>"; font-family:var(--mono); color:var(--accent); font-size:1.1rem; }
-    .pill-cat { font-family:var(--mono); font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; color:var(--accent-ink); }
-    .card h3 { font-family:var(--display); font-weight:700; font-size:1.05rem; line-height:1.3; letter-spacing:-0.01em; margin:.45rem 0 0; }
-    .card .meta { display:flex; align-items:center; gap:.8rem; padding:1rem 1.15rem 1.15rem; font-family:var(--mono); font-size:.74rem; color:var(--muted); }
+    .card { background:var(--surface); border:1px solid var(--hair); border-radius:16px; box-shadow:var(--shadow-sm); overflow:hidden; transition:transform .14s ease, box-shadow .2s ease, border-color .2s ease; }
+    .card:hover { transform:translateY(-3px); box-shadow:var(--shadow); border-color:color-mix(in srgb, var(--accent) 35%, var(--hair)); }
+    .card a.cardlink { display:flex; flex-direction:column; height:100%; text-decoration:none; color:inherit; }
+    .card .thumb { width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg-tint); display:grid; place-items:center; border-bottom:1px solid var(--hair); }
+    .card .thumb img { width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+    .card:hover .thumb img { transform:scale(1.04); }
+    .card .thumb.fallback::after { content:"</>"; font-family:var(--mono); color:var(--accent); font-size:1.4rem; }
+    .card .body { display:flex; flex-direction:column; flex:1; padding:1.15rem 1.25rem 1.2rem; }
+    .pill-cat { display:inline-block; font-family:var(--mono); font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:.55rem; }
+    .card h3 { font-family:var(--display); font-weight:700; font-size:1.12rem; line-height:1.3; letter-spacing:-0.01em; margin:0 0 .5rem; }
+    .card .dek { color:var(--muted); font-size:.9rem; line-height:1.55; margin:0; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .card-tags { list-style:none; display:flex; flex-wrap:wrap; gap:.35rem; margin:.85rem 0 0; padding:0; }
+    .card-tags li { font-family:var(--mono); font-size:.66rem; color:var(--ink-soft); background:var(--bg-tint); border:1px solid var(--hair); border-radius:999px; padding:.18rem .5rem; }
+    .card-tags li::before { content:"#"; color:var(--accent-ink); margin-right:.1rem; }
+    .card .meta { display:flex; align-items:center; gap:.8rem; margin-top:auto; padding-top:1rem; font-family:var(--mono); font-size:.74rem; color:var(--muted); }
     .card .meta .mi { display:inline-flex; align-items:center; gap:.3rem; }
     .card .meta svg { width:13px; height:13px; }
+    .card .meta .chev { margin-left:auto; color:var(--muted); transition:transform .14s ease, color .14s ease; }
+    .card:hover .meta .chev { color:var(--accent-ink); transform:translateX(3px); }
+    .card .meta .chev svg { width:16px; height:16px; }
 
     /* ── List view ────────────────────────────────────── */
     .cards.list { display:block; border-top:1px solid var(--hair); }
     .cards.list .card { border:0; border-bottom:1px solid var(--hair); border-radius:0; box-shadow:none; transform:none; background:transparent; }
-    .cards.list .card:hover { box-shadow:none; background:var(--bg-tint); }
-    .cards.list a.cardlink { display:grid; grid-template-columns:64px 1fr auto auto; gap:1.1rem; align-items:center; padding:1.1rem .6rem; }
-    .cards.list .thumb { width:64px; height:64px; }
-    .cards.list .top { display:contents; padding:0; }
-    .cards.list .txt { min-width:0; }
-    .cards.list h3 { margin:.25rem 0 .25rem; font-size:1.05rem; }
-    .cards.list .dek { color:var(--muted); font-size:.9rem; line-height:1.5; margin:0; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .cards.list .card:hover { box-shadow:none; background:var(--bg-tint); transform:none; }
+    .cards.list a.cardlink { flex-direction:row; align-items:center; gap:1.1rem; padding:1.1rem .6rem; }
+    .cards.list .thumb { width:104px; height:66px; aspect-ratio:auto; flex:none; border-radius:10px; border-bottom:0; }
+    .cards.list .card:hover .thumb img { transform:none; }
+    .cards.list .body { padding:0; }
+    .cards.list .pill-cat { display:none; }
+    .cards.list h3 { font-size:1.05rem; margin:0 0 .25rem; }
+    .cards.list .card-tags { display:none; }
+    .cards.list .meta { margin:.45rem 0 0; padding:0; white-space:nowrap; }
+    .cards.list .meta .chev { display:none; }
     .cards.list .meta { padding:0; white-space:nowrap; }
     .cards.list .chev { color:var(--muted); display:grid; place-items:center; }
     .cards.list .chev svg { width:18px; height:18px; }
@@ -307,6 +323,9 @@
     .prose code { font-family:var(--mono); font-size:.88em; }
     .prose :not(pre) > code { background:var(--code-bg); padding:.12em .38em; border-radius:5px; }
     .prose blockquote { margin-inline:0; padding-left:1.1rem; border-left:3px solid var(--accent); color:var(--muted); }
+    .post-tags { list-style:none; display:flex; flex-wrap:wrap; gap:.5rem; max-width:52rem; margin:-0.75rem 0 2.25rem; padding:0; }
+    .post-tags li { font-family:var(--mono); font-size:.76rem; letter-spacing:.02em; color:var(--ink-soft); background:var(--bg-tint); border:1px solid var(--hair); border-radius:999px; padding:.32rem .8rem; }
+    .post-tags li::before { content:"#"; color:var(--accent-ink); margin-right:.15rem; }
 
     footer { border-top:1px solid var(--hair); }
     footer .wrap { padding-block:2rem 3rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; font-size:.88rem; color:var(--muted); }

@@ -4,6 +4,7 @@ title: "An RSS-Driven Publishing Pipeline: Git to a Static Site, Medium, and Sub
 description: "A code-level walkthrough of a publishing setup where markdown in a Git repo is the source of truth, a full-content feed.xml is the integration surface, and syndication to Medium and Substack rides on top of it."
 date: 2026-06-21
 categories: [Engineering, DevOps]
+keywords: [RSS, Atom feed, Eleventy, static site generator, GitHub Pages, GitHub Actions, Substack, Medium, syndication, SVG to PNG, canonical URL]
 tags: posts
 ---
 
