@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" width="1000" height="460" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0 0 L8 3 L0 6 Z" fill="#7f97bd"/>
+    </marker>
+    <marker id="arr" markerWidth="11" markerHeight="11" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 Z" fill="#7f97bd"/>
+    </marker>
+    <style>
+      .label { font-size:18px; font-weight:700; }
+      .sub { font-size:13px; fill:#8ea3c4; }
+      .edge { fill:#9fb3d1; font-size:13px; font-weight:600; }
+      @keyframes flow { to { stroke-dashoffset:-24; } }
+      .anim { stroke-dasharray:6 6; animation: flow 1s linear infinite; }
+      @keyframes pulse { 0%,100%{ opacity:0.35;} 50%{opacity:1;} }
+      .pulse { animation: pulse 2.2s ease-in-out infinite; }
+      @keyframes breathe { 0%,100%{ r:7;} 50%{ r:11;} }
+    </style>
+  </defs>
+
+  <rect width="1000" height="460" rx="16" fill="#0f1b2d"/>
+  <text x="40" y="50" fill="#fff" font-size="22" font-weight="800">The microVM lifecycle</text>
+  <text x="40" y="76" class="sub">create-microvm-image → run-microvm → suspend ⇄ resume → stop</text>
+
+  <!-- CREATE / BUILD -->
+  <g transform="translate(40,150)">
+    <rect width="170" height="100" rx="14" fill="#1a2942" stroke="#33486c"/>
+    <rect width="170" height="6" rx="3" fill="#ff9000"/>
+    <text x="20" y="42" class="label" fill="#ffb13d">Build image</text>
+    <text x="20" y="66" class="sub">Dockerfile + S3 zip</text>
+    <text x="20" y="84" class="sub">→ Firecracker snapshot</text>
+  </g>
+
+  <!-- RUNNING -->
+  <g transform="translate(300,150)">
+    <rect width="170" height="100" rx="14" fill="#1a2942" stroke="#3ef0b0" stroke-width="2"/>
+    <rect width="170" height="6" rx="3" fill="#13c98e"/>
+    <text x="20" y="42" class="label" fill="#3ef0b0">Running</text>
+    <text x="20" y="66" class="sub">resumes from snapshot</text>
+    <text x="20" y="84" class="sub">serves HTTPS endpoint</text>
+    <circle cx="150" cy="26" r="7" fill="#3ef0b0"><animate attributeName="r" values="7;11;7" dur="2s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <!-- SUSPENDED -->
+  <g transform="translate(560,150)">
+    <rect width="170" height="100" rx="14" fill="#1a2942" stroke="#7ab6ff" stroke-width="2"/>
+    <rect width="170" height="6" rx="3" fill="#4f9dff"/>
+    <text x="20" y="42" class="label" fill="#7ab6ff">Suspended</text>
+    <text x="20" y="66" class="sub">state preserved</text>
+    <text x="20" y="84" class="sub">reduced idle cost</text>
+  </g>
+
+  <!-- STOPPED -->
+  <g transform="translate(820,150)">
+    <rect width="150" height="100" rx="14" fill="#1a2942" stroke="#33486c"/>
+    <rect width="150" height="6" rx="3" fill="#647ca0"/>
+    <text x="20" y="42" class="label" fill="#b9c8de">Stopped</text>
+    <text x="20" y="66" class="sub">≤ 8h total</text>
+    <text x="20" y="84" class="sub">resources freed</text>
+  </g>
+
+  <!-- edges -->
+  <g fill="none" stroke="#7f97bd" stroke-width="2.5">
+    <path class="anim" d="M212 200 H298" marker-end="url(#arr)"/>
+    <path class="anim" d="M472 200 H558" marker-end="url(#arr)"/>
+    <path class="anim" d="M732 200 H818" marker-end="url(#arr)"/>
+  </g>
+  <text x="240" y="190" class="edge">launch</text>
+  <text x="488" y="190" class="edge">idle timeout</text>
+  <text x="748" y="190" class="edge">stop</text>
+
+  <!-- resume loop back -->
+  <path class="anim" d="M645 252 C645 330, 385 330, 385 258" fill="none" stroke="#3ef0b0" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="470" y="345" fill="#3ef0b0" font-size="13" font-weight="700">autoResume on request</text>
+
+  <text x="40" y="430" class="sub">Idle policy: maxIdleDurationSeconds · suspendedDurationSeconds · autoResumeEnabled</text>
+</svg>

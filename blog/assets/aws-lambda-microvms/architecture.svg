@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 540" width="1000" height="540" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="a2" markerWidth="11" markerHeight="11" refX="8" refY="3.5" orient="auto">
+      <path d="M0 0 L9 3.5 L0 7 Z" fill="#7f97bd"/>
+    </marker>
+    <style>
+      .t { font-size:17px; font-weight:700; }
+      .s { font-size:13px; fill:#8ea3c4; }
+      .e { fill:#9fb3d1; font-size:12.5px; font-weight:600; }
+      @keyframes dash { to { stroke-dashoffset:-28; } }
+      .flow { stroke-dasharray:7 7; animation: dash 1.1s linear infinite; }
+      @keyframes glow { 0%,100%{opacity:.4;} 50%{opacity:1;} }
+      .glow { animation: glow 2.4s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="540" rx="16" fill="#0f1b2d"/>
+  <text x="40" y="48" fill="#fff" font-size="22" font-weight="800">An app that runs untrusted code</text>
+  <text x="40" y="74" class="s">Lambda Functions are the event backbone; MicroVMs are the isolated execution layer.</text>
+
+  <!-- user -->
+  <g transform="translate(40,150)">
+    <rect width="150" height="86" rx="13" fill="#1a2942" stroke="#33486c"/>
+    <text x="20" y="40" class="t" fill="#cdddef">User / Agent</text>
+    <text x="20" y="64" class="s">submits prompt</text>
+  </g>
+
+  <!-- lambda function backbone -->
+  <g transform="translate(260,140)">
+    <rect width="190" height="108" rx="13" fill="#1a2942" stroke="#ff9000" stroke-width="2"/>
+    <rect width="190" height="6" rx="3" fill="#ff9000"/>
+    <text x="20" y="42" class="t" fill="#ffb13d">Lambda Function</text>
+    <text x="20" y="66" class="s">auth, routing, orchestration</text>
+    <text x="20" y="86" class="s">event-driven, stateless</text>
+  </g>
+
+  <!-- microVM -->
+  <g transform="translate(540,120)">
+    <rect width="220" height="150" rx="14" fill="#13243c" stroke="#3ef0b0" stroke-width="2"/>
+    <rect width="220" height="6" rx="3" fill="#13c98e"/>
+    <text x="20" y="42" class="t" fill="#3ef0b0">Lambda MicroVM</text>
+    <text x="20" y="66" class="s">dedicated Firecracker VM</text>
+    <text x="20" y="86" class="s">runs the untrusted code</text>
+    <text x="20" y="106" class="s">stateful · per-session</text>
+    <rect x="20" y="118" width="120" height="20" rx="6" fill="#0f1b2d" stroke="#2c405f"/>
+    <text x="30" y="132" fill="#7ab6ff" font-size="11.5" font-family="monospace">X-aws-proxy-auth</text>
+    <circle cx="200" cy="30" r="7" fill="#3ef0b0" class="glow"/>
+  </g>
+
+  <!-- isolation boundary -->
+  <rect x="520" y="100" width="260" height="190" rx="18" fill="none" stroke="#3ef0b0" stroke-width="1.5" stroke-dasharray="3 6" opacity="0.55"/>
+  <text x="528" y="305" fill="#3ef0b0" font-size="12.5" font-weight="700">isolation boundary — no shared kernel</text>
+
+  <!-- snapshot store -->
+  <g transform="translate(540,370)">
+    <rect width="220" height="92" rx="13" fill="#1a2942" stroke="#33486c"/>
+    <text x="20" y="38" class="t" fill="#cdddef">S3 + snapshot</text>
+    <text x="20" y="62" class="s">code artifact + base image</text>
+    <text x="20" y="82" class="s">memory/disk restore</text>
+  </g>
+
+  <!-- edges -->
+  <g fill="none" stroke="#7f97bd" stroke-width="2.5">
+    <path class="flow" d="M192 193 H256" marker-end="url(#a2)"/>
+    <path class="flow" d="M452 194 H536" marker-end="url(#a2)"/>
+    <path d="M650 270 V366" marker-end="url(#a2)" stroke-dasharray="5 6"/>
+  </g>
+  <text x="200" y="183" class="e">request</text>
+  <text x="462" y="184" class="e">run-microvm</text>
+  <text x="660" y="330" class="e">resume from snapshot</text>
+
+  <!-- return path -->
+  <path class="flow" d="M540 250 C360 300, 360 230, 452 210" fill="none" stroke="#3ef0b0" stroke-width="2.2" marker-end="url(#a2)" opacity="0.9"/>
+  <text x="372" y="290" fill="#3ef0b0" class="e">result</text>
+
+  <text x="40" y="500" class="s">ARM64 · up to 16 vCPU · 32 GB memory · 32 GB disk · ≤ 8h per session</text>
+</svg>

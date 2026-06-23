@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1626"/>
+      <stop offset="1" stop-color="#152339"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb13d"/>
+      <stop offset="1" stop-color="#ff9000"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3ef0b0"/>
+      <stop offset="1" stop-color="#13c98e"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- subtle grid -->
+  <g stroke="#21314d" stroke-width="1" opacity="0.5">
+    <path d="M0 158 H1200 M0 316 H1200 M0 474 H1200"/>
+    <path d="M300 0 V630 M600 0 V630 M900 0 V630"/>
+  </g>
+
+  <!-- label chip -->
+  <rect x="80" y="78" width="232" height="40" rx="20" fill="#1d2c45" stroke="#33486c"/>
+  <circle cx="104" cy="98" r="6" fill="#ff9000"/>
+  <text x="122" y="104" fill="#9fb3d1" font-size="17" font-weight="600" letter-spacing="0.5">AWS LAMBDA · 2026</text>
+
+  <text x="80" y="232" fill="#ffffff" font-size="74" font-weight="800" letter-spacing="-1.5">Lambda MicroVMs</text>
+  <text x="80" y="300" fill="#ff9f1a" font-size="42" font-weight="700">Isolated sandboxes with full lifecycle control</text>
+
+  <text x="80" y="368" fill="#aebfd6" font-size="25" font-weight="400">Firecracker-backed VMs that boot from a snapshot, hold state across</text>
+  <text x="80" y="402" fill="#aebfd6" font-size="25" font-weight="400">sessions, suspend when idle, and safely run code you didn't write.</text>
+
+  <!-- three pill features -->
+  <g font-size="19" font-weight="600">
+    <rect x="80" y="452" width="244" height="50" rx="25" fill="#15243b" stroke="#2c405f"/>
+    <text x="104" y="483" fill="#3ef0b0">VM-level isolation</text>
+    <rect x="344" y="452" width="236" height="50" rx="25" fill="#15243b" stroke="#2c405f"/>
+    <text x="368" y="483" fill="#ffb13d">Snapshot resume</text>
+    <rect x="600" y="452" width="250" height="50" rx="25" fill="#15243b" stroke="#2c405f"/>
+    <text x="624" y="483" fill="#7ab6ff">Stateful, up to 8h</text>
+  </g>
+
+  <!-- right: stacked microVM cards -->
+  <g transform="translate(900,150)">
+    <rect x="40" y="40" width="220" height="150" rx="14" fill="#16243b" stroke="#33486c"/>
+    <rect x="20" y="20" width="220" height="150" rx="14" fill="#1b2d49" stroke="#3a567f"/>
+    <rect x="0" y="0" width="220" height="150" rx="14" fill="#21344f" stroke="url(#orange)" stroke-width="2"/>
+    <rect x="18" y="20" width="184" height="10" rx="5" fill="#ff9000"/>
+    <rect x="18" y="44" width="150" height="8" rx="4" fill="#3a567f"/>
+    <rect x="18" y="64" width="120" height="8" rx="4" fill="#3a567f"/>
+    <circle cx="180" cy="118" r="22" fill="url(#green)"/>
+    <path d="M171 118 l7 7 l13 -15" fill="none" stroke="#0d1626" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="20" y="128" fill="#cdddef" font-size="15" font-weight="600">microVM</text>
+  </g>
+</svg>
