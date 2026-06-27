@@ -4,6 +4,7 @@ title: "React to LLM JSON as It Streams, Not After It Lands"
 description: "Parse LLM JSON token streams incrementally with jsonsax and Pydantic AI — react to each field the instant it arrives, not after the full response lands."
 date: 2026-06-27
 prNumber: 5
+categories: [Engineering, AI]
 author: "chandrakumarreddy"
 keywords: [streaming json, jsonsax, pydantic ai, sax parser, llm structured output, openrouter, incremental json parsing, python async]
 image: "/assets/llm-streaming-json-jsonsax/hero.png"

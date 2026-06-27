@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#64748B"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="560" fill="url(#bg2)"/>
+
+  <text x="40" y="48" fill="#F1F5F9" font-size="24" font-weight="700">From token deltas to printed fields</text>
+  <text x="40" y="76" fill="#94A3B8" font-size="15">Each streamed value is routed by its JSONPath — no field waits for the others</text>
+
+  <!-- Left: streamed JSON -->
+  <g transform="translate(40, 120)">
+    <rect width="360" height="380" rx="12" fill="#111C32" stroke="#4F46E5" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#C7D2FE" font-size="15" font-weight="600">stream_text(delta=True)</text>
+    <g font-family="Menlo,Monaco,monospace" font-size="13.5" fill="#A5B4FC">
+      <text x="20" y="72">{</text>
+      <text x="36" y="98">"summary": "Run pip install...",</text>
+      <text x="36" y="124">"sections": [</text>
+      <text x="52" y="150">{ "title": "Install",</text>
+      <text x="64" y="176">"content": "..." }</text>
+      <text x="36" y="202">],</text>
+      <text x="36" y="228">"confidence": 0.82,</text>
+      <text x="36" y="254">"confidence_explanation": "...",</text>
+      <text x="36" y="280">"answer_type": "how-to",</text>
+      <text x="36" y="306">"citations": ["setup.md"],</text>
+      <text x="36" y="332">"follow_ups": ["How to..."]</text>
+      <text x="20" y="358">}</text>
+    </g>
+  </g>
+
+  <!-- arrows from each line to handler -->
+  <g stroke="#64748B" stroke-width="1.5">
+    <line x1="400" y1="190" x2="560" y2="150" marker-end="url(#arr)"/>
+    <line x1="400" y1="244" x2="560" y2="222" marker-end="url(#arr)"/>
+    <line x1="400" y1="270" x2="560" y2="294" marker-end="url(#arr)"/>
+    <line x1="400" y1="322" x2="560" y2="366" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- Right: handler routing -->
+  <g transform="translate(560, 120)">
+    <rect width="400" height="380" rx="12" fill="#0B1F24" stroke="#06B6D4" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#A5F3FC" font-size="15" font-weight="600">_on_value(path, value)</text>
+    <g font-family="Menlo,Monaco,monospace" font-size="12.5">
+      <text x="20" y="62" fill="#FDE68A">$.summary</text>
+      <text x="200" y="62" fill="#94A3B8">→ print intro</text>
+
+      <text x="20" y="102" fill="#FDE68A">endswith(".title")</text>
+      <text x="200" y="102" fill="#94A3B8">→ ## heading</text>
+      <text x="20" y="126" fill="#FDE68A">endswith(".content")</text>
+      <text x="200" y="126" fill="#94A3B8">→ body text</text>
+
+      <text x="20" y="166" fill="#FDE68A">$.confidence</text>
+      <text x="200" y="166" fill="#94A3B8">→ Confidence: …</text>
+      <text x="20" y="190" fill="#FDE68A">$.answer_type</text>
+      <text x="200" y="190" fill="#94A3B8">→ Answer Type: …</text>
+
+      <text x="20" y="230" fill="#FDE68A">$.citations[0]</text>
+      <text x="200" y="230" fill="#94A3B8">→ ## Sources</text>
+      <text x="20" y="254" fill="#FDE68A">$.citations[n]</text>
+      <text x="200" y="254" fill="#94A3B8">→ - file</text>
+
+      <text x="20" y="294" fill="#FDE68A">$.follow_ups[0]</text>
+      <text x="200" y="294" fill="#94A3B8">→ ## Follow Ups</text>
+    </g>
+    <rect x="20" y="318" width="360" height="44" rx="8" fill="#1E293B" stroke="#F59E0B" stroke-width="1"/>
+    <text x="36" y="346" fill="#FDE68A" font-size="13" font-family="Menlo,Monaco,monospace">end_object($) → stop, then validate</text>
+  </g>
+</svg>

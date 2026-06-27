@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="indigo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="amber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.08"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#64748B"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.35">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="472" x2="1200" y2="472"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="92" text-anchor="middle" fill="#F1F5F9" font-size="48" font-weight="700">Grounded Answers That Stream</text>
+  <text x="600" y="132" text-anchor="middle" fill="#94A3B8" font-size="21">RAG retrieval + structured output, parsed field-by-field as it arrives</text>
+
+  <!-- Stage 1: Repo docs / retrieval -->
+  <g transform="translate(70, 230)">
+    <rect width="260" height="230" rx="14" fill="url(#indigo)" stroke="#4F46E5" stroke-width="1.5"/>
+    <text x="130" y="34" text-anchor="middle" fill="#C7D2FE" font-size="17" font-weight="600">Retrieve</text>
+    <text x="130" y="58" text-anchor="middle" fill="#94A3B8" font-size="13" font-family="Menlo,Monaco,monospace">minsearch index</text>
+    <!-- doc chunks -->
+    <rect x="28" y="78" width="204" height="30" rx="6" fill="#1E293B" stroke="#4F46E5" stroke-width="1"/>
+    <text x="42" y="98" fill="#94A3B8" font-size="12" font-family="Menlo,Monaco,monospace">chunk · setup.md</text>
+    <rect x="28" y="116" width="204" height="30" rx="6" fill="#1E293B" stroke="#4F46E5" stroke-width="1"/>
+    <text x="42" y="136" fill="#94A3B8" font-size="12" font-family="Menlo,Monaco,monospace">chunk · install.mdx</text>
+    <rect x="28" y="154" width="204" height="30" rx="6" fill="#1E293B" stroke="#4F46E5" stroke-width="1"/>
+    <text x="42" y="174" fill="#94A3B8" font-size="12" font-family="Menlo,Monaco,monospace">chunk · config.md</text>
+    <text x="130" y="212" text-anchor="middle" fill="#64748B" font-size="12">top-10 context</text>
+  </g>
+
+  <!-- Stage 2: LLM + jsonsax -->
+  <g transform="translate(470, 230)">
+    <rect width="260" height="230" rx="14" fill="url(#cyan)" stroke="#06B6D4" stroke-width="1.5"/>
+    <text x="130" y="34" text-anchor="middle" fill="#A5F3FC" font-size="17" font-weight="600">Stream + Parse</text>
+    <text x="130" y="58" text-anchor="middle" fill="#94A3B8" font-size="13" font-family="Menlo,Monaco,monospace">LLM → jsonsax</text>
+    <rect x="28" y="80" width="204" height="34" rx="6" fill="#1E293B" stroke="#06B6D4" stroke-width="1"/>
+    <text x="42" y="102" fill="#A5F3FC" font-size="13" font-family="Menlo,Monaco,monospace">{"summary": "...</text>
+    <rect x="28" y="122" width="204" height="34" rx="6" fill="#1E293B" stroke="#06B6D4" stroke-width="1"/>
+    <text x="42" y="144" fill="#A5F3FC" font-size="13" font-family="Menlo,Monaco,monospace">"confidence": 0.</text>
+    <rect x="28" y="164" width="204" height="34" rx="6" fill="#1E293B" stroke="#06B6D4" stroke-width="1"/>
+    <text x="42" y="186" fill="#A5F3FC" font-size="13" font-family="Menlo,Monaco,monospace">"citations": [...</text>
+    <text x="130" y="218" text-anchor="middle" fill="#64748B" font-size="12">value events fire</text>
+  </g>
+
+  <!-- Stage 3: Rendered fields -->
+  <g transform="translate(870, 230)">
+    <rect width="260" height="230" rx="14" fill="url(#amber)" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="130" y="34" text-anchor="middle" fill="#FDE68A" font-size="17" font-weight="600">Render live</text>
+    <text x="130" y="58" text-anchor="middle" fill="#94A3B8" font-size="13" font-family="Menlo,Monaco,monospace">GroundedAnswer</text>
+    <text x="28" y="92" fill="#F1F5F9" font-size="14" font-weight="600">Summary ✓</text>
+    <text x="28" y="120" fill="#CBD5E1" font-size="13">## Section title ✓</text>
+    <text x="28" y="148" fill="#CBD5E1" font-size="13">Confidence: 0.82 ✓</text>
+    <text x="28" y="176" fill="#CBD5E1" font-size="13">Sources: 3 files ✓</text>
+    <text x="130" y="212" text-anchor="middle" fill="#64748B" font-size="12">no full-buffer wait</text>
+  </g>
+
+  <!-- Arrows -->
+  <line x1="334" y1="345" x2="466" y2="345" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="734" y1="345" x2="866" y2="345" stroke="#64748B" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <text x="600" y="560" text-anchor="middle" fill="#475569" font-size="15" font-family="Menlo,Monaco,monospace">structured_output/rag_structured_output_streaming.py</text>
+</svg>

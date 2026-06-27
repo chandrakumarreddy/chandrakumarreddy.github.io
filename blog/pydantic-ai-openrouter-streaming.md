@@ -4,6 +4,7 @@ title: "Streaming Structured Output with Pydantic AI and OpenRouter"
 description: "Configure Pydantic AI with OpenRouter and stream partially-validated Pydantic models token by token — structured output without waiting for the full response."
 date: 2026-06-25
 prNumber: 4
+categories: [Engineering, AI]
 author: "Chandra"
 keywords: [pydantic-ai, openrouter, structured output, streaming, async python, LLM agents, pydantic, openai-compatible]
 image: "/assets/pydantic-ai-openrouter-streaming/hero.png"
