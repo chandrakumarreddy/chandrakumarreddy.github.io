@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" style="font-family:-apple-system,Segoe UI,Roboto,sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="card3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.08"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.4">
+    <line x1="0" y1="157" x2="1200" y2="157"/>
+    <line x1="0" y1="314" x2="1200" y2="314"/>
+    <line x1="0" y1="472" x2="1200" y2="472"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+  </g>
+
+  <!-- Left: LLM token chunks -->
+  <g transform="translate(68, 175)">
+    <rect width="200" height="52" rx="8" fill="url(#card1)" stroke="#4F46E5" stroke-width="1.5"/>
+    <text x="12" y="22" fill="#94A3B8" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">chunk 1</text>
+    <text x="12" y="40" fill="#C7D2FE" font-size="14" font-family="Menlo,Monaco,monospace">{"titl</text>
+  </g>
+  <g transform="translate(68, 243)">
+    <rect width="200" height="52" rx="8" fill="url(#card1)" stroke="#4F46E5" stroke-width="1.5"/>
+    <text x="12" y="22" fill="#94A3B8" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">chunk 2</text>
+    <text x="12" y="40" fill="#C7D2FE" font-size="14" font-family="Menlo,Monaco,monospace">e": "RAG</text>
+  </g>
+  <g transform="translate(68, 311)">
+    <rect width="200" height="52" rx="8" fill="url(#card1)" stroke="#4F46E5" stroke-width="1.5"/>
+    <text x="12" y="22" fill="#94A3B8" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">chunk 3</text>
+    <text x="12" y="40" fill="#C7D2FE" font-size="14" font-family="Menlo,Monaco,monospace"> Agents",</text>
+  </g>
+  <g transform="translate(68, 379)">
+    <rect width="200" height="52" rx="8" fill="url(#card1)" stroke="#4F46E5" stroke-width="1.5"/>
+    <text x="12" y="22" fill="#94A3B8" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">chunk 4</text>
+    <text x="12" y="40" fill="#C7D2FE" font-size="14" font-family="Menlo,Monaco,monospace">"sections":</text>
+  </g>
+
+  <!-- LLM label -->
+  <text x="168" y="158" text-anchor="middle" fill="#6366F1" font-size="13" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" letter-spacing="1">LLM TOKEN STREAM</text>
+
+  <!-- Arrows from chunks to parser -->
+  <g stroke="#4F46E5" stroke-width="2" opacity="0.7" fill="none">
+    <line x1="270" y1="201" x2="430" y2="280"/>
+    <line x1="270" y1="269" x2="430" y2="300"/>
+    <line x1="270" y1="337" x2="430" y2="320"/>
+    <line x1="270" y1="405" x2="430" y2="340"/>
+    <polygon points="428,274 436,283 422,284" fill="#4F46E5" stroke="none"/>
+    <polygon points="428,294 436,303 422,304" fill="#4F46E5" stroke="none"/>
+    <polygon points="428,314 436,323 422,324" fill="#4F46E5" stroke="none"/>
+    <polygon points="428,334 436,343 422,344" fill="#4F46E5" stroke="none"/>
+  </g>
+
+  <!-- Center: jsonsax Parser box -->
+  <g transform="translate(430, 240)">
+    <rect width="220" height="140" rx="16" fill="#06B6D4" fill-opacity="0.12" stroke="#06B6D4" stroke-width="2"/>
+    <!-- glow ring -->
+    <rect x="-3" y="-3" width="226" height="146" rx="18" fill="none" stroke="#06B6D4" stroke-width="1" opacity="0.3" filter="url(#glow)"/>
+    <text x="110" y="30" text-anchor="middle" fill="#67E8F9" font-size="12" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" letter-spacing="1">jsonsax</text>
+    <text x="110" y="58" text-anchor="middle" fill="#F8FAFC" font-size="22" font-weight="700" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Parser</text>
+    <text x="110" y="83" text-anchor="middle" fill="#94A3B8" font-size="12" font-family="-apple-system,Segoe UI,Roboto,sans-serif">.feed(chunk)</text>
+    <line x1="20" y1="95" x2="200" y2="95" stroke="#334155" stroke-width="1"/>
+    <text x="110" y="115" text-anchor="middle" fill="#7DD3FC" font-size="11" font-family="Menlo,Monaco,monospace">state machine</text>
+    <text x="110" y="131" text-anchor="middle" fill="#475569" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">character-by-character</text>
+  </g>
+  <text x="540" y="222" text-anchor="middle" fill="#22D3EE" font-size="13" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" letter-spacing="1">STREAMING PARSER</text>
+
+  <!-- Arrows from parser to events -->
+  <g stroke="#06B6D4" stroke-width="2" opacity="0.7" fill="none">
+    <line x1="652" y1="285" x2="790" y2="235"/>
+    <line x1="652" y1="305" x2="790" y2="305"/>
+    <line x1="652" y1="325" x2="790" y2="375"/>
+    <polygon points="785,230 793,238 779,240" fill="#06B6D4" stroke="none"/>
+    <polygon points="785,299 793,307 779,309" fill="#06B6D4" stroke="none"/>
+    <polygon points="785,369 793,377 779,379" fill="#06B6D4" stroke="none"/>
+  </g>
+
+  <!-- Right: events -->
+  <g transform="translate(790, 190)">
+    <rect width="230" height="52" rx="8" fill="url(#card3)" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="12" y="20" fill="#94A3B8" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">value event</text>
+    <text x="12" y="40" fill="#FDE68A" font-size="13" font-family="Menlo,Monaco,monospace">$.title = "RAG Agents"</text>
+  </g>
+  <g transform="translate(790, 278)">
+    <rect width="230" height="52" rx="8" fill="url(#card3)" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="12" y="20" fill="#94A3B8" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">key event</text>
+    <text x="12" y="40" fill="#FDE68A" font-size="13" font-family="Menlo,Monaco,monospace">$.sections  "sections"</text>
+  </g>
+  <g transform="translate(790, 366)">
+    <rect width="230" height="52" rx="8" fill="url(#card3)" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="12" y="20" fill="#94A3B8" font-size="11" font-family="-apple-system,Segoe UI,Roboto,sans-serif">value event</text>
+    <text x="12" y="40" fill="#FDE68A" font-size="13" font-family="Menlo,Monaco,monospace">$.follow_ups[0] = …</text>
+  </g>
+
+  <text x="905" y="172" text-anchor="middle" fill="#F59E0B" font-size="13" font-weight="600" font-family="-apple-system,Segoe UI,Roboto,sans-serif" letter-spacing="1">CALLBACKS FIRE INSTANTLY</text>
+
+  <!-- Title text -->
+  <text x="600" y="80" text-anchor="middle" fill="#F8FAFC" font-size="42" font-weight="800" font-family="-apple-system,Segoe UI,Roboto,sans-serif" letter-spacing="-1">React to LLM JSON</text>
+  <text x="600" y="128" text-anchor="middle" fill="#F8FAFC" font-size="42" font-weight="800" font-family="-apple-system,Segoe UI,Roboto,sans-serif" letter-spacing="-1">as It Streams</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="575" text-anchor="middle" fill="#64748B" font-size="16" font-family="-apple-system,Segoe UI,Roboto,sans-serif">Pydantic AI + jsonsax — SAX-style incremental JSON parsing for LLM token streams</text>
+</svg>
